@@ -1,0 +1,54 @@
+@import "bourbon"
+@import "fonts"
+@import "libs"
+@import "vars"
+
+@function get-vw($object)
+    $vw: (1920 * 0.01) * 1px
+    @return ($object / $vw) * 1vw
+
+@function get-vh($object)
+    $vh: (974 * 0.01) * 1px
+    @return ($object / $vh) * 1vh
+
+@function get-rem($pixels, $context: $browser-context)
+    @return #{$pixels/$context}rem
+
+*
+    box-sizing: border-box
+
+a
+    text-decoration: none
+    &:-webkit-any-link
+        text-decoration: none
+
+html
+    font-size: calc(#{get-vw(16px/2)} + #{get-vh(16px/2)})
+
+body
+    font-size: calc(#{get-vw(16px/2)} + #{get-vh(16px/2)})
+    position: relative
+    line-height: normal
+    font-family: $f-regular
+    overflow: hidden
+    color: #fff
+    height: 100vh
+    margin: 0
+    padding: 0
+    border: 0
+    outline: none
+    background-color: #000
+    -webkit-font-smoothing: subpixel-antialiased
+main
+    position: relative
+    width: 100vw
+    height: 100vh
+    overflow: hidden
+section
+    position: relative
+    width: 100vw
+    height: 100vh
+
+
+@import "media"
+// Всегда в конце
