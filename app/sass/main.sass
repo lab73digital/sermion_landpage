@@ -1,4 +1,3 @@
-@import "bourbon"
 @import "fonts"
 @import "libs"
 @import "vars"
@@ -23,32 +22,369 @@ a
         text-decoration: none
 
 html
-    font-size: calc(#{get-vw(16px/2)} + #{get-vh(16px/2)})
+    font-size: calc(#{get-vw(18px/2)} + #{get-vh(18px/2)})
 
 body
-    font-size: calc(#{get-vw(16px/2)} + #{get-vh(16px/2)})
+    font-size: calc(#{get-vw(18px/2)} + #{get-vh(18px/2)})
     position: relative
     line-height: normal
-    font-family: $f-regular
-    overflow: hidden
-    color: #fff
-    height: 100vh
+    font-family: $r-medium
+    text-align: center
+    //overflow: hidden
+    color: $c-black
+    //height: 100vh
     margin: 0
     padding: 0
     border: 0
     outline: none
-    background-color: #000
+    background-color: #ffffff
     -webkit-font-smoothing: subpixel-antialiased
-main
+    p, h1, h2, h3, h4, h5, span, ul, li, tr, td, q
+        padding: 0
+        margin: 0
+
+p
+    padding: 0
+    margin: 0
+//main
+//    position: relative
+//    width: 100vw
+//    height: 100vh
+//    overflow: hidden
+
+.screen-1
+    height: 100vh
+    width: 100vw
+    background-image: url(../img/sermion-puzzle-bg-1.png), url(../img/sermion-puzzle-bg-2.png), url(../img/sermion-puzzle-bg-3.png), url(../img/sermion-bg-shape.jpg)
+    background-repeat: no-repeat
+    background-position: right top, right bottom, left bottom, center bottom
+    background-size: get-vw(799px) get-vw(799px), get-vw(799px) get-vw(799px), get-vw(799px) get-vw(799px), contain
+
+.screen-1_content-container
+    position: relative
+    overflow: visible
+    h1
+        text-transform: uppercase
+        font-size: get-vw(46px)
+        font-family: $os-light
+        color: $c-blue
+        padding-top: 3vw
+        padding-bottom: 1.5vw
+        margin-top: 0
+    p
+        padding-bottom: 0.3vw
+    .p__bold
+        font-family: $r-bold
+        padding-bottom: 2vw
+    .p__blue
+        color: $c-blue
+    h2
+        text-transform: uppercase
+        font-size: get-vw(28px)
+        font-family: $os-bold
+        padding-top: 2vw
+        padding-bottom: 1vw
+    .head-svg
+        height: get-vw(381px)
+        width: get-vw(320px)
+        overflow: visible
+        z-index: 1
+        position: relative
+        margin: 3vh 0
+        #blue-4
+            cursor: pointer
+            &:after
+                content: "hello"
+                position: absolute
+                top: 10px
+                left: 10px
+                color: $c-grey
+                font-family: $r-bold
+                font-size: 20px
+
+.screen-1_side-quotes
+    position: absolute
+    top: 0
+    left: 0
+    height: 100vh
+    width: 100vw
+    span
+        color: $c-grey
+        font-family: $r-bold
+        font-size: get-vw(28px)
+        text-align: left
+    .screen-1_side-quotes_1
+        position: absolute
+        top: 40%
+        left: 18%
+        transform: rotate(10deg)
+    .screen-1_side-quotes_2
+        position: absolute
+        top: 54%
+        left: 20%
+        transform: rotate(-10deg)
+    .screen-1_side-quotes_3
+        position: absolute
+        top: 45%
+        left: 62%
+        transform: rotate(-10deg)
+
+.button
+    font-family: $r-bold
+    color: $c-white
+    background-color: $c-blue
+    width: get-vw(220px)
+    height: get-vw(52px)
+    border-radius: 26px
+    line-height: get-vw(52px)
+    font-size: get-vw(18px)
+    border: none
+    display: inline-block
+    user-select: none
+    margin: 2vw 0
+    box-shadow: 0 2px 21px -3px rgba(16,207,232,1)
+    &:hover
+        transition: all 0.4s ease-in-out
+        background-color: #4fc0fe
+#violet_button
+    background-color: $c-purple
+    box-shadow: 0 2px 21px -3px $c-purple
+    margin: 3vw 0 2vw
+    &:hover
+        background-color: #8331d9
+#red_button
+    background-color: $c-red
+    box-shadow: 0 2px 21px -3px $c-red
+    margin: 3vw 0 2vw
+    &:hover
+        background-color: #ff5b58
+#yellow_button
+    background-color: $c-yellow
+    box-shadow: 0 2px 21px -3px $c-yellow
+    margin: 3vw 0 2vw
+    &:hover
+        background-color: #ffd442
+#blue_button
+    background-color: $c-blue
+    box-shadow: 0 2px 21px -3px $c-blue
+    margin: 3vw 0 2vw
+    &:hover
+        background-color: #4fc0fe
+
+.screen-1_visible
+    display: block
+.screen-1_hidden
+    display: none
+.show
+    display: block
+.hide
+    display: none
+.dummy
+    opacity: 0 //hides dummy -- blue text on the screen-1 in order to prevent jumping head
+
+.screen-1_pointer
+    height: get-vw(53px)
+    width: get-vw(33px)
+    margin: 3vw auto 2vw
+
+.screen-page_header
     position: relative
     width: 100vw
-    height: 100vh
-    overflow: hidden
-section
+    height: get-vw(856px)
+    background-color: #fbfbfb
+    background-image: url(../img/sermion-puzzle-bg-1.png)
+    background-repeat: no-repeat
+    background-position: right top
+    background-size: get-vw(799px) get-vw(799px)
+.screen-page
     position: relative
+    h1
+        text-transform: uppercase
+        font-size: get-vw(46px)
+        font-family: $os-light
+        color: $c-blue
+        padding-top: 3vw
+        padding-bottom: 1.5vw
+        margin-top: 0
+    h2
+        font-family: $r-bold
+        font-size: get-vw(28px)
+        text-transform: uppercase
+        margin: 1vw 0
+    h3
+        font-family: $r-bold
+        font-size: get-vw(24px)
+        margin-top: 3vw
+    p
+        padding: 0.5vw
+        color: #666666
+    .p__after-h1
+        padding-left: 20vw
+        padding-right: 20vw
+    .p__bold,span
+        font-family: $os-bold
+        padding-bottom: 2vw
+    .p__under-button
+        margin-top: 1vw
+#violet-page
+    h1,h3
+        color: $c-purple
+    .screen-page_content_rectangle_text
+        h2
+            color: $c-purple
+#red-page
+    h1,h3
+        color: $c-red
+    .screen-page_content_rectangle_text
+        h2
+            color: $c-red
+#yellow-page
+    h1,h3
+        color: $c-yellow
+    .screen-page_content_rectangle_text
+        h2
+            color: $c-yellow
+#blue-page
+    h1,h3
+        color: $c-blue
+    .screen-page_content_rectangle_text
+        h2
+            color: $c-blue
+
+.screen-page_header_man-row
     width: 100vw
-    height: 100vh
+    height: get-vw(460px)
+    position: absolute
+    bottom: 0
+    display: flex
+
+.screen-page_header_man-row_left
+    width: 40%
+    height: 100%
+    text-align: right
+.screen-page_header_man-row_left_item
+    height: 50%
+    width: 100%
+    display: flex
+    align-items: flex-end
+    justify-content: center
+    //max-width: 20vw
+    padding-left: 25vw
+    flex-direction: column
+    text-align: right
+    img,svg
+        width: get-vw(70px)
+        height: get-vw(70px)
+        margin-bottom: 1vw
+
+
+
+.screen-page_header_man-row_center
+    width: 20%
+    height: 100%
+    img
+        height: get-vw(459px)
+        width: get-vw(320px)
+
+.screen-page_header_man-row_right
+    width: 40%
+    height: 100%
+    text-align: left
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    align-items: center
+.screen-page_header_man-row_right_item
+    height: 50%
+    width: 100%
+    display: flex
+    align-items: flex-start
+    justify-content: center
+    //max-width: 20vw
+    padding-right: 25vw
+    flex-direction: column
+    text-align: left
+    img,svg
+        width: get-vw(70px)
+        height: get-vw(70px)
+        margin-bottom: 1vw
+
+.screen-page_content
+    margin-top: 5vw
+    //width: get-vw(1170px)
+.screen-page_content_photo-row
+    display: flex
+    align-items: flex-start
+    justify-content: center
+    margin: 3vw 15vw
+.screen-page_content_photo-row_column
+    img
+        height: get-vw(180px)
+        width: get-vw(270px)
+    p
+        max-width: 17vw
+        //padding: get-vw(10px) get-vw(35px)
+.screen-page_content_rectangle
+    display: flex
+    align-items: center
+    //width: get-vw(1170px)
+    width: get-vw(1290px)
+    height: get-vw(230px)
+    background-color: #f6f9fb
+    background-image: url(../img/sermion-puzzle-bg-1.png), url(../img/sermion-puzzle-bg-3.png)
+    background-repeat: no-repeat
+    background-position: right top, left bottom
+    background-size: get-vw(390px) get-vw(390px), get-vw(300px) get-vw(300px)
+    margin: 3vw auto 5vw
+    text-align: left
+    border-radius: get-vw(15px)
+    h2
+        font-size: get-vw(24px)
+        padding: 0
+        margin: 0 0 1vw 0
+    .p__bold
+        font-family: $r-medium
+        font-size: get-vw(21px)
+        padding-bottom: 0.5vw
+        color: $c-black
+    p
+        padding-right: get-vw(250px)
+
+.screen-page_content_rectangle_photo
+    img
+        width: get-vw(160px)
+        height: get-vw(160px)
+        border-radius: 50%
+        margin: 0 2vw
+
+.screen-page_content_puzzle-row
+    display: flex
+    justify-content: center
+    align-items: center
+    margin: 3vw 15vw
+    //width: get-vw(1000px)
+.screen-page_content_puzzle-row_column
+    display: flex
+    flex-direction: column
+    align-items: center
+    align-self: flex-start
+    svg
+        width: get-vw(208px)
+        height: get-vw(208px)
+        margin-left: 1.5vw
+    img
+        width: get-vw(220px)
+    p
+        //padding: get-vw(10px) get-vw(35px)
+        max-width: 15vw
+
+.screen-page_footer
+    width: 100vw
+    height: 20vw
+    background-image: url(../img/sermion-puzzle-bg-2.png), url(../img/sermion-puzzle-bg-3.png)
+    background-repeat: no-repeat
+    background-position: right bottom, left bottom
+    background-size: get-vw(400px) get-vw(400px), get-vw(400px) get-vw(400px)
 
 
 @import "media"
-// Всегда в конце

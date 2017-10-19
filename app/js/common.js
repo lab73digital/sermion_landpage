@@ -85,3 +85,17 @@
 //         return false
 //     }
 // }
+
+$(document).ready(function () {
+    $('#screen-1_button').on('click', function () {
+        $('.screen-1_visible').toggleClass('hide');
+        $('.screen-1_hidden').toggleClass('show');
+        TweenMax.to('#violet-1', 0.4, {x:-400,rotation: -25});
+        TweenMax.to('#red-2', 0.4, {x:-300,y:200,rotation: -35});
+        TweenMax.to('#yelloow-3', 0.4, {x:300,rotation: -20});
+        TweenMax.to('#blue-4', 0.4, {x:300,y:50,rotation: 15});
+    });
+    // $('svg').on('click', function () {
+    //     $('.screen-1').hide();
+    // })
+});
