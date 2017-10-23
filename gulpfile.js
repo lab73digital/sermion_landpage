@@ -19,6 +19,11 @@ gulp.task('scripts', function() {
 	return gulp.src([
 		'app/libs/jquery/dist/jquery.min.js',
         'app/libs/gsap/src/minified/TweenMax.min.js',
+        'app/libs/gsap/src/minified/plugins/DrawSVGPlugin.min.js',
+        'app/libs/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js',
+        'app/libs/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js',
+        'app/libs/jquery-animateNumber/jquery.animateNumber.min.js',
+        'app/libs/parallax.js-1.4.2/parallax.min.js',
 		'app/js/common.js' // Всегда в конце
 		])
 	.pipe(concat('scripts.min.js'))

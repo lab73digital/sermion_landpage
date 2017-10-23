@@ -82,7 +82,7 @@ p
         text-transform: uppercase
         font-size: get-vw(28px)
         font-family: $os-bold
-        padding-top: 2vw
+        padding-top: 1vw
         padding-bottom: 1vw
     .head-svg
         height: get-vw(381px)
@@ -90,7 +90,7 @@ p
         overflow: visible
         z-index: 1
         position: relative
-        margin: 3vh 0
+        margin: 0
         #blue-4
             cursor: pointer
             &:after
@@ -142,34 +142,60 @@ p
     display: inline-block
     user-select: none
     margin: 2vw 0
-    box-shadow: 0 2px 21px -3px rgba(16,207,232,1)
+    box-shadow: 0 2px 12px -3px rgba(16,207,232,1)
+    transition: all 0.4s ease-in-out
     &:hover
-        transition: all 0.4s ease-in-out
-        background-color: #4fc0fe
+        background-color: #63b9ff
+        transform: translateY(-2px)
 #violet_button
     background-color: $c-purple
-    box-shadow: 0 2px 21px -3px $c-purple
+    box-shadow: 0 2px 12px -3px $c-purple
     margin: 3vw 0 2vw
     &:hover
         background-color: #8331d9
+        transform: translateY(-2px)
 #red_button
     background-color: $c-red
-    box-shadow: 0 2px 21px -3px $c-red
+    box-shadow: 0 2px 12px -3px $c-red
     margin: 3vw 0 2vw
     &:hover
         background-color: #ff5b58
+        transform: translateY(-2px)
 #yellow_button
     background-color: $c-yellow
-    box-shadow: 0 2px 21px -3px $c-yellow
+    box-shadow: 0 2px 12px -3px $c-yellow
     margin: 3vw 0 2vw
     &:hover
         background-color: #ffd442
+        transform: translateY(-2px)
 #blue_button
     background-color: $c-blue
-    box-shadow: 0 2px 21px -3px $c-blue
+    box-shadow: 0 2px 12px -3px $c-blue
     margin: 3vw 0 2vw
     &:hover
-        background-color: #4fc0fe
+        background-color: #63b9ff
+        transform: translateY(-2px)
+#buy_white-button
+    width: get-vw(180px)
+    height: get-vw(50px)
+    line-height: get-vw(46px)
+    background-color: $c-white
+    color: $c-blue
+    border: solid get-vw(2px) $c-grey
+    box-shadow: none
+    cursor: pointer
+    &:hover
+        transition: all 0.4s ease-in-out
+        box-shadow: 0 2px 12px -3px rgba(16,207,232,1)
+        background-color: $c-blue
+        color: $c-white
+        border: solid get-vw(2px) $c-blue
+        transform: translateY(-2px)
+#buy_blue-button
+    width: get-vw(180px)
+    height: get-vw(50px)
+    line-height: get-vw(50px)
+    cursor: pointer
 
 .screen-1_visible
     display: block
@@ -276,6 +302,9 @@ p
         width: get-vw(70px)
         height: get-vw(70px)
         margin-bottom: 1vw
+        transition: all 0.5s ease-in-out
+        &:hover
+            transform: scale(1.1)
 
 
 
@@ -308,6 +337,9 @@ p
         width: get-vw(70px)
         height: get-vw(70px)
         margin-bottom: 1vw
+        transition: all 0.5s ease-in-out
+        &:hover
+            transform: scale(1.1)
 
 .screen-page_content
     margin-top: 5vw
@@ -348,7 +380,7 @@ p
         padding-bottom: 0.5vw
         color: $c-black
     p
-        padding-right: get-vw(250px)
+        padding: 0 get-vw(250px) 0 0
 
 .screen-page_content_rectangle_photo
     img
@@ -356,6 +388,10 @@ p
         height: get-vw(160px)
         border-radius: 50%
         margin: 0 2vw
+        transition: all 0.5s ease-in-out
+        &:hover
+            //transform: scale(1.1)
+            //transform: scale(0.9)
 
 .screen-page_content_puzzle-row
     display: flex
@@ -385,6 +421,529 @@ p
     background-repeat: no-repeat
     background-position: right bottom, left bottom
     background-size: get-vw(400px) get-vw(400px), get-vw(400px) get-vw(400px)
+    svg
+        width: auto
+        height: 14vw
+        margin: 2.1vw 0 0
+        padding: 0
+        //display: flex
+
+.sermion-page
+    position: relative
+    h1
+        text-transform: uppercase
+        font-size: get-vw(46px)
+        font-family: $os-light
+        color: $c-blue
+        padding-top: 3vw
+        padding-bottom: 1.5vw
+        margin-top: 0
+    h2
+        font-family: $r-bold
+        font-size: get-vw(28px)
+        text-transform: uppercase
+        margin: 1vw 0
+        color: $c-blue
+    h3
+        font-family: $r-bold
+        font-size: get-vw(24px)
+        margin-top: 3vw
+    p
+        padding: 0.5vw
+        color: #666666
+    .p__after-h1
+        padding-left: 20vw
+        padding-right: 20vw
+    .p__bold,span
+        font-family: $os-bold
+        padding-bottom: 2vw
+    .p__under-button
+        margin-top: 1vw
+
+.sermion-page_header
+    position: relative
+    width: 100vw
+    height: get-vw(856px)
+    background-color: #fbfbfb
+    background-image: url(../img/sermion-puzzle-bg-1.png)
+    background-repeat: no-repeat
+    background-position: right top
+    background-size: get-vw(799px) get-vw(799px)
+    margin-bottom: 10vw
+
+
+.sermion-page_header_plashka
+    display: flex
+    flex-direction: row
+    margin: 1vw auto
+    justify-content: center
+    width: get-vw(1170px)
+    height: get-vw(470px)
+    background-color: $c-white
+    background-image: url(../img/sermion-puzzle-bg-1.png)
+    background-repeat: no-repeat
+    background-position: right top
+    background-size: get-vw(470px) get-vw(470px)
+    border-radius: get-vw(10px)
+    box-shadow: 0 2px 21px -3px rgb(211, 208, 209)
+.sermion-page_header_plashka_left-column
+    display: flex
+    flex-direction: column
+    justify-content: flex-end
+    align-items: center
+    width: 50%
+.sermion-page_header_plashka_left-column_pack-container
+    img
+        width: get-vw(338px)
+        height: auto
+.sermion-page_header_plashka_left-column_buttons-container
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+    width: 70%
+.sermion-page_header_plashka_right-column
+    display: flex
+    flex-direction: column
+    width: 50%
+    justify-content: center
+.sermion-page_header_plashka_right-column_heading-container
+    h2
+        font-size: get-vw(24px)
+        text-align: left
+.sermion-page_header_plashka_right-column_items-container
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+.sermion-page_header_plashka_right-column_items-container_item
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    align-items: center
+    width: 100%
+    height: 100%
+    margin-top: 0.5vw
+    //justify-content: flex-start
+.sermion-page_header_plashka_right-column_items-container_item_puzzle
+    text-align: left
+    width: 10%
+    img
+        width: get-vw(50px)
+        height: auto
+        transition: all 0.5s ease-in-out
+        &:hover
+            transform: scale(1.1)
+.sermion-page_header_plashka_right-column_items-container_item_text
+    width: 90%
+    text-align: left
+    padding-right: get-vw(10px)
+
+
+
+.parallax
+    position: relative
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    text-align: left
+    //justify-content: center
+    height: get-vw(774px)
+    width: get-vw(1248px)
+    margin: 0 auto
+    background-image: url(../img/doc-parallax/sermion-puzzle-transparency.png)
+    background-position: center
+    background-repeat: no-repeat
+    background-size: cover
+    padding: 10vw 10vw 0
+    //background-size: 1248px 774px
+    &:before
+        content: 'Цифры говорят за Сермион'
+        position: absolute
+        left: 0
+        top: get-vw(-50px)
+        width: 100%
+        height: get-vw(50px)
+        background-color: #fff
+        font-family: $r-bold
+        font-size: get-vw(28px)
+        text-transform: uppercase
+        //margin: 1vw 0
+        color: $c-blue
+        text-align: center
+    &:after
+        content: ''
+        position: absolute
+        left: 0
+        bottom: get-vw(-50px)
+        width: 100%
+        height: get-vw(50px)
+        background-color: #fff
+.parallax_text
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    margin-bottom: 2vw
+    align-items: center
+    p
+        margin: 0
+        padding-left: 1vw
+        color: $c-white
+        font-family: $r-regular
+    img
+        width: get-vw(45px)
+        height: get-vw(45px)
+        transition: all 0.5s ease-in-out
+        &:hover
+            transform: scale(1.1)
+#h2_parallax
+    margin-bottom: 0
+    padding-bottom: 0
+
+
+//sermion-page_content_diagram-1:
+
+
+.s3_bottom,.s4_bottom
+    display: flex
+    align-items: flex-start
+    //justify-content: space-around
+.s3_bottom-p
+    width: 30%
+.s4_bottom-p
+    width: 20%
+.s-4_bottom-p_0
+    width: 9.3%
+#diagram_1, #diagram_2
+    height: auto
+
+.sermion-page_content_diagram
+    margin: 3vw auto
+    padding: 2vw
+    width: get-vw(969px)
+    height: get-vw(644px)
+    background-color: #f8fbff
+    border-radius: get-vw(10px)
+    overflow: hidden
+    .container
+        width: 100%
+        padding: 0
+        h2
+            padding: 0 5vw 2vw
+        .s-3,.s-4
+            padding: 50px 0
+        ul.s-3__list,ul.s-4__list
+            font-size: get-rem(14)
+            list-style: none
+            padding: 0
+            margin: 0
+            text-align: center
+            color: #B7D6ED
+            li.s-3__list-item, li.s-4__list-item
+                position: relative
+                margin: 0 0 15px
+                &:after
+                    content: ''
+                    position: absolute
+                    bottom: -7px
+                    left: 50%
+                    width: 600px
+                    border-top: 1px dashed #E9F0F4
+        .s-3__graph-container,.s-4__graph-container
+            display: flex
+            //flex-direction: row
+            //align-items: flex-start
+            //justify-content: flex-start
+            position: relative
+        .s-4__graph-container
+            margin-top: 1vw
+        .s-3__graph-item
+            height: 192px
+            position: relative
+            float: none
+            display: flex
+            flex-direction: column
+            &--0
+                width: 10%
+                display: flex
+                //align-items: flex-start
+                justify-content: flex-end
+            &--1
+                width: 30%
+                .s-3__graph-line
+                    height: 144px
+                .s-3__graph-circle
+                    border-color: $c-blue
+                    bottom: 142px
+                .s-3__graph-percent
+                    color: $c-blue
+                    bottom: 142px
+            &--2
+                width: 30%
+                .s-3__graph-line
+                    height: 145px
+                .s-3__graph-circle
+                    border-color: #038D97
+                    bottom: 143px
+                .s-3__graph-percent
+                    color: #038D97
+                    bottom: 143px
+            &--3
+                width: 30%
+                .s-3__graph-line
+                    height: 122px
+                .s-3__graph-circle
+                    border-color: #702ABA
+                    bottom: 120px
+                .s-3__graph-percent
+                    color: #702ABA
+                    bottom: 120px
+        .s-4__graph-item
+            //width: 10%
+            height: 192px
+            position: relative
+            float: none
+            display: flex
+            flex-direction: column
+            &--0
+                width: 10%
+                display: flex
+                //align-items: flex-start
+                justify-content: flex-end
+            &--1,&--2,&--3
+                width: 20%
+                height: 200px
+                display: flex
+                flex-direction: column-reverse
+                padding-bottom: 12px
+                align-items: center
+                .s-4__graph-item_row
+                    display: flex
+                    flex-direction: row
+                    justify-content: flex-start
+                    width: 108px
+                    .s-4__graph_puzzle-item
+                        svg
+                            margin: 0
+                            height: 42px
+                            width: auto
+                        &--2
+                            transform: translateX(-10px)
+                        &--3
+                            transform: translateX(-20px)
+                    &--1
+                        z-index: 4
+                    &--2
+                        transform: translateY(get-vw(16px))
+                        z-index: 3
+                    &--3
+                        transform: translateY(get-vw(32px))
+                        z-index: 2
+                    &--4
+                        transform: translate(32px, get-vw(48px))
+                        z-index: 1
+                    &--5
+                        transform: translate(32px, get-vw(64px))
+                        z-index: 0
+            &--2
+                width: 20%
+            &--3
+                width: 20%
+            &--4
+                display: flex
+                flex-direction: column
+                justify-content: center
+                width: 30%
+                height: 192px
+                background-color: #f8fbff
+                p
+                    font-size: get-vw(14px)
+                    margin-bottom: 1vw
+                    text-align: left
+                    position: relative
+                    margin-left: 4vw
+                    line-height: get-vw(32px)
+                    &:before
+                        position: absolute
+                        content: ''
+                        display: inline-block
+                        width: get-vw(30px)
+                        height: get-vw(30px)
+                        margin: 0
+                        //padding: get-vw(1.5px)
+                        background-image: url(../img/svg/sermion-table-puzzle-yellow.svg)
+                        background-size: get-vw(30px) get-vw(30px)
+                        background-position: center center
+                        background-repeat: no-repeat
+                        vertical-align: middle
+                        transform: translateX(-2vw)
+                #green_pp
+                    &:before
+                        background-image: url(../img/svg/sermion-table-puzzle-green.svg)
+                #blue_pp
+                    &:before
+                        background-image: url(../img/svg/sermion-table-puzzle_blue.svg)
+        .s-3__graph-line
+            position: absolute
+            left: 50%
+            bottom: 9px
+            transform: translate(-50%, 0)
+            width: 8px
+            border-radius: 10px
+            background-color: #E9F0F4
+            opacity: 0
+        .s-3__graph-circle
+            position: absolute
+            left: 50%
+            transform: translate(-50%, 0)
+            width: 20px
+            height: 20px
+            border-radius: 50%
+            border: 2px solid
+            opacity: 0
+        .s-3__graph-percent
+            position: absolute
+            left: 50%
+            transform: translate(50%, 0)
+            font-size: get-rem(18)
+            font-weight: 700
+            opacity: 0
+    h2, p
+        margin: 0
+        padding: 0 0 0.3vw 0
+    table
+        width: 100%
+        margin-top: 0.5vw
+        margin-bottom: 2vw
+        border: solid get-vw(1px) $c-grey
+        border-collapse: collapse
+        color: #666666
+        td
+            border: solid get-vw(1px) $c-grey
+            align-content: center
+            vertical-align: middle
+            padding: 0.5vw
+            font-family: $r-medium
+            font-size: get-vw(18px)
+            width: 33%
+            span
+                font-size: get-vw(14px)
+            .td-circle
+                width: get-vw(75px)
+                height: get-vw(75px)
+                border-radius: 50%
+                cursor: pointer
+                p
+                    color: $c-white
+                    padding: 0.7vw
+                margin: 0.5vw auto
+            .blue_circle
+                background-color: $c-blue
+                border: solid get-vw(3px) #77C9E5
+                transition: all 0.3s linear
+                &:hover
+                    border: double get-vw(5px) #77C9E5
+            .green_circle
+                background-color: $c-green
+                border: solid get-vw(3px) #D2E5BA
+                transition: all 0.3s ease-in-out
+                &:hover
+                    border: dashed get-vw(5px) #D2E5BA
+            .yellow_circle
+                background-color: $c-yellow
+                border: solid get-vw(3px) #FFF6C2
+                transition: all 0.3s linear
+                &:hover
+                    border: dotted get-vw(5px) #FFF6C2
+
+.puzzle_green-light
+    fill: #a4f499
+.puzzle_blue-light
+    fill: #00a2ff
+.puzzle_yellow-light
+    fill: #ffeb8e
+.puzzle_green-dark
+    fill: #89e97c
+.puzzle_blue-dark
+    fill: #0095eb
+.puzzle_yellow-dark
+    fill: #ffd485
+.invisible-puzzle
+    fill: none
+
+.sermion-page_content_plashka
+    display: flex
+    flex-direction: row
+    margin: 3vw auto 1vw
+    width: get-vw(1170px)
+    height: get-vw(354px)
+    background-color: $c-white
+    background-image: url(../img/sermion-puzzle-bg-1.png)
+    background-repeat: no-repeat
+    background-position: right top
+    background-size: get-vw(470px) get-vw(470px)
+    border-radius: get-vw(10px)
+    box-shadow: 0 2px 21px -3px rgb(211, 208, 209)
+.sermion-page_content_plashka_left-column
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-content: center
+    width: 40%
+    height: 100%
+    img
+        //margin-left: 10vw
+        width: get-vw(305px)
+        height: get-vw(227px)
+.sermion-page_content_plashka_right-column
+    width: 60%
+    height: 100%
+    display: flex
+    flex-direction: column
+    align-content: center
+    align-items: center
+    justify-content: center
+    img
+        width: get-vw(219px)
+        height: get-vw(43px)
+        margin-bottom: 1vw
+    span
+        color: $c-blue
+.sermion-page_content_plashka_right-column_buttons-container
+    display: flex
+    flex-direction: row
+    //align-items: center
+    //justify-content: space-around
+    margin: 0 5vw
+    //width: 60%
+    .button
+        margin: 1vw 2vw 0 2vw
+.sermion-page_content
+    svg
+        width: get-vw(114px)
+        height: auto
+        margin: 3vw 0
+    background-image: url(../img/sermion-puzzle-bg-2.png), url(../img/sermion-puzzle-bg-3.png)
+    background-repeat: no-repeat
+    background-position: right bottom, left bottom
+    background-size: get-vw(500px) get-vw(500px), get-vw(500px) get-vw(500px)
+
+.sermion-page_content_plashka-end
+    width: get-vw(1024px)
+    height: get-vw(148px)
+    background-color: #f8fbff
+    display: block
+    margin: 0 auto
+    padding: 2vw
+    border-radius: get-vw(5px)
+    h5
+        font-family: $r-bold
+        font-size: get-vw(24px)
+        color: #c3d3dd
+    p
+        font-family: $r-medium
+        font-size: get-vw(16px)
+        color: #c3d3dd
+
 
 
 @import "media"
