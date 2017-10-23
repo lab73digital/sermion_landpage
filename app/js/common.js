@@ -99,6 +99,18 @@ $(document).ready(function () {
         TweenMax.to('#yelloow-3', 0.4, {ease: Power1.easeInOut,x:300,rotation: -20});
         TweenMax.to('#blue-4', 0.4, {ease: Power1.easeInOut,x:300,y:50,rotation: 15});
     });
+    $('.page_puzzle').on('click', function () {
+        $(this).addClass('page_puzzle__active');
+    });
+
+    $('.page_puzzle__active').everyTime(1500, function () {
+        if (!$('.page_puzzle__active').parent().next().length) {
+            $('.page_puzzle__active').removeClass('page_puzzle__active');
+            $($('.page_puzzle').get(0)).addClass('page_puzzle__active');
+        } else {
+            $('.page_puzzle__active').removeClass('page_puzzle__active').parent().next().find('.page_puzzle').addClass('page_puzzle__active');
+        }
+    },0);
     // $('svg').on('click', function () {
     //     $('.screen-1').hide();
     // })

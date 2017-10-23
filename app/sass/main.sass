@@ -361,7 +361,10 @@ p
     align-items: center
     //width: get-vw(1170px)
     width: get-vw(1290px)
-    height: get-vw(230px)
+    //height: get-vw(230px)
+    height: auto
+    padding-bottom: 2vw
+    padding-top: 2vw
     background-color: #f6f9fb
     background-image: url(../img/sermion-puzzle-bg-1.png), url(../img/sermion-puzzle-bg-3.png)
     background-repeat: no-repeat
@@ -404,15 +407,51 @@ p
     flex-direction: column
     align-items: center
     align-self: flex-start
+    flex-basis: 20%
     svg
         width: get-vw(208px)
         height: get-vw(208px)
         margin-left: 1.5vw
+        transition: all 0.5s ease-in-out
+        &:hover
+            .page_puzzle__stroke
+                stroke: #008CF5
+            .page_puzzle__image
+                filter: grayscale(0%)
+                opacity: 1
     img
         width: get-vw(220px)
     p
         //padding: get-vw(10px) get-vw(35px)
         max-width: 15vw
+.page_puzzle__stroke
+    fill: none
+    stroke: #F0F8FF
+    stroke-width: 3
+    stroke-miterlimit: 10
+    transition: all 0.5s ease-in-out
+.page_puzzle__rect
+    clip-path: url(#SVGID_2_puzzle-row)
+    fill: #F0F8FF
+.page_puzzle__rect3
+    clip-path: url(#clip-path3)
+.page_puzzle__rect2
+    clip-path: url(#clip-path-22)
+.page_puzzle__rect4
+    clip-path: url(#clip-path-4)
+.page_puzzle__rect44
+    clip-path: url(#clip-path-44)
+.page_puzzle__image
+    filter: grayscale(100%)
+    opacity: 0.2
+    overflow: visible
+    transition: all 0.5s ease-in-out
+.page_puzzle__active
+    .page_puzzle__stroke
+        stroke: #008CF5
+    .page_puzzle__image
+        filter: grayscale(0%)
+        opacity: 1
 
 .screen-page_footer
     width: 100vw
@@ -624,6 +663,7 @@ p
     background-color: #f8fbff
     border-radius: get-vw(10px)
     overflow: hidden
+    box-shadow: inset 0 0 42px -8px rgba(78,141,204,.32)
     .container
         width: 100%
         padding: 0
@@ -733,16 +773,16 @@ p
                     &--1
                         z-index: 4
                     &--2
-                        transform: translateY(get-vw(16px))
+                        transform: translateY(get-vw(20px))
                         z-index: 3
                     &--3
-                        transform: translateY(get-vw(32px))
+                        transform: translateY(get-vw(39px))
                         z-index: 2
                     &--4
-                        transform: translate(32px, get-vw(48px))
+                        transform: translate(32px, get-vw(58px))
                         z-index: 1
                     &--5
-                        transform: translate(32px, get-vw(64px))
+                        transform: translate(32px, get-vw(77px))
                         z-index: 0
             &--2
                 width: 20%
