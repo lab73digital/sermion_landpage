@@ -94,14 +94,121 @@ $(document).ready(function () {
     $('#screen-1_button').on('click', function () {
         $('.screen-1_visible').toggleClass('hide');
         $('.screen-1_hidden').toggleClass('show');
-        TweenMax.to('#violet-1', 0.4, {ease: Power1.easeInOut,x:-400,rotation: -25});
-        TweenMax.to('#red-2', 0.4, {ease: Power1.easeInOut,x:-300,y:200,rotation: -35});
-        TweenMax.to('#yelloow-3', 0.4, {ease: Power1.easeInOut,x:300,rotation: -20});
-        TweenMax.to('#blue-4', 0.4, {ease: Power1.easeInOut,x:300,y:50,rotation: 15});
+        var puzzleTweenViolet = new TimelineMax().fromTo('#violet-1', 0.5,
+            {
+                ease: Power1.easeInOut,
+                x: 0,
+                y:0,
+                rotation: 0
+            },{
+                ease: Power1.easeInOut,
+                x:-400,
+                y:0,
+                rotation: -25
+            }).fromTo('#violet-1', 2,
+            {
+                ease: Power1.easeInOut,
+                rotation: -25,
+                x: -400,
+                y: 0
+            },{
+                ease: Power1.easeInOut,
+                rotation: -15,
+                x: -410,
+                y: 5,
+                repeat: -1,
+                yoyo: true
+            });
+        var puzzleTweenRed = new TimelineMax().fromTo('#red-2', 0.5, {ease: Power1.easeInOut,x:0,y:0,rotation: 0},
+                                                {ease: Power1.easeInOut,x:-300,y:200,rotation: -35}).fromTo('#red-2', 2,
+            {
+                ease: Power1.easeInOut,
+                rotation: -35,
+                x: -300,
+                y: 200
+            },{
+                ease: Power1.easeInOut,
+                rotation: -25,
+                x: -310,
+                y: 205,
+                repeat: -1,
+                yoyo: true
+            });
+        var puzzleTweenYellow = new TimelineMax().fromTo('#yelloow-3', 0.5, {ease: Power1.easeInOut,x:0,y:0,rotation: 0},
+            {ease: Power1.easeInOut,x:280,y:-50,rotation: -20}).fromTo('#yelloow-3', 2,
+            {
+                ease: Power1.easeInOut,
+                rotation: -20,
+                x: 280,
+                y: -50
+            },{
+                ease: Power1.easeInOut,
+                rotation: -30,
+                x: 290,
+                y: -40,
+                repeat: -1,
+                yoyo: true
+            });
+        var puzzleTweenBlue = new TimelineMax().fromTo('#blue-4', 0.5, {ease: Power1.easeInOut,x:0,y:0,rotation: 0},
+            {ease: Power1.easeInOut,x:300,y:50,rotation: 15}).fromTo('#blue-4', 2,
+            {
+                ease: Power1.easeInOut,
+                rotation: 15,
+                x: 300,
+                y: 50
+            },{
+                ease: Power1.easeInOut,
+                rotation: 5,
+                x: 310,
+                y: 40,
+                repeat: -1,
+                yoyo: true
+            });
+
+        $('.puzzle_text').addClass('puzzle_text--active');
+        $('.violet-1,.red-2,.yelloow-3,.blue-4').addClass('shadow-puzzles');
+
+        $('#red-2').on('mouseenter', function () {
+            puzzleTweenRed.paused(true);
+        }).on('mouseleave', function () {
+            puzzleTweenRed.paused(false);
+        });
+        $('#violet-1').on('mouseenter', function () {
+            puzzleTweenViolet.paused(true);
+        }).on('mouseleave', function () {
+            puzzleTweenViolet.paused(false);
+        });
+        $('#blue-4').on('mouseenter', function () {
+            puzzleTweenBlue.paused(true);
+        }).on('mouseleave', function () {
+            puzzleTweenBlue.paused(false);
+        });
+        $('#yelloow-3').on('mouseenter', function () {
+            puzzleTweenYellow.paused(true);
+        }).on('mouseleave', function () {
+            puzzleTweenYellow.paused(false);
+        });
+
     });
     $('.page_puzzle').on('click', function () {
         $(this).addClass('page_puzzle__active');
     });
+
+    $('.confirm,.discard').on('click', function () {
+        $('.disclaimer').hide('slow');
+        $('.screen-1').removeClass('blured');
+        });
+
+    // $('.screen-page, .sermion-page').hide();
+    // $('#violet-1').on('click',function () {
+    //     $('#violet-page').show();
+    // });
+
+    // $('#red-page').on('mouseenter', function () {
+    //     $(this).removeClass('page_puzzle__active');
+    //     $($('#red-page').find('.page_puzzle').get(0)).addClass('page_puzzle__active');
+    // });
+
 
     $('.page_puzzle__active').everyTime(1500, function () {
         if (!$('.page_puzzle__active').parent().next().length) {

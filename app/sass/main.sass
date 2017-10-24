@@ -22,7 +22,7 @@ a
         text-decoration: none
 
 html
-    font-size: calc(#{get-vw(18px/2)} + #{get-vh(18px/2)})
+    //font-size: calc(#{get-vw(18px/2)} + #{get-vh(18px/2)})
 
 body
     font-size: calc(#{get-vw(18px/2)} + #{get-vh(18px/2)})
@@ -43,6 +43,7 @@ body
         padding: 0
         margin: 0
 
+
 p
     padding: 0
     margin: 0
@@ -58,11 +59,25 @@ p
     background-image: url(../img/sermion-puzzle-bg-1.png), url(../img/sermion-puzzle-bg-2.png), url(../img/sermion-puzzle-bg-3.png), url(../img/sermion-bg-shape.jpg)
     background-repeat: no-repeat
     background-position: right top, right bottom, left bottom, center bottom
-    background-size: get-vw(799px) get-vw(799px), get-vw(799px) get-vw(799px), get-vw(799px) get-vw(799px), contain
+    background-size: get-vw(599px) get-vw(599px), get-vw(599px) get-vw(599px), get-vw(599px) get-vw(599px), contain
+
+
 
 .screen-1_content-container
-    position: relative
+    //position: relative
     overflow: visible
+    height: 100%
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-content: center
+    .screen-1_content-container_bottom
+        margin-bottom: 1vw
+        z-index: 1
+        .screen-1_hidden
+            transform: translateY(-150%)
+        p
+            font-size: get-vw(20px)
     h1
         text-transform: uppercase
         font-size: get-vw(46px)
@@ -84,23 +99,37 @@ p
         font-family: $os-bold
         padding-top: 1vw
         padding-bottom: 1vw
-    .head-svg
-        height: get-vw(381px)
-        width: get-vw(320px)
-        overflow: visible
-        z-index: 1
-        position: relative
-        margin: 0
-        #blue-4
-            cursor: pointer
-            &:after
-                content: "hello"
-                position: absolute
-                top: 10px
-                left: 10px
-                color: $c-grey
-                font-family: $r-bold
-                font-size: 20px
+.head-container
+    height: get-vh(351px)
+    width: 100vw
+    overflow: visible
+    z-index: 1
+    position: absolute
+    top: 35vh
+svg
+    pointer-events: auto
+.head-svg
+    height: get-vh(351px)
+    width: 100%
+    overflow: visible
+    z-index: 3
+    position: absolute
+    margin: 0
+    top: 50vh
+    left: 50%
+    transform: translate(-50%,-50%)
+    .violet-1,.red-2,.yelloow-3,.blue-4
+        cursor: pointer
+        &:hover
+            .puzzle_text--active
+                fill: #615f5f
+.puzzle_text
+    font-family: $os-bold
+    font-size: get-vw(24px)
+    text-transform: uppercase
+    fill: none
+.shadow-puzzles
+    filter: url(#f1)
 
 .screen-1_side-quotes
     position: absolute
@@ -108,6 +137,7 @@ p
     left: 0
     height: 100vh
     width: 100vw
+    z-index: 0
     span
         color: $c-grey
         font-family: $r-bold
@@ -401,6 +431,7 @@ p
     justify-content: center
     align-items: center
     margin: 3vw 15vw
+    align-content: center
     //width: get-vw(1000px)
 .screen-page_content_puzzle-row_column
     display: flex
@@ -408,10 +439,17 @@ p
     align-items: center
     align-self: flex-start
     flex-basis: 20%
+    text-align: center
+    &:first-child
+        svg
+            //margin-left: 1vw
+    &:last-child
+        svg
+            //margin-right: 2vw
     svg
         width: get-vw(208px)
         height: get-vw(208px)
-        margin-left: 1.5vw
+        //margin-left: 1.5vw
         transition: all 0.5s ease-in-out
         &:hover
             .page_puzzle__stroke
@@ -420,7 +458,7 @@ p
                 filter: grayscale(0%)
                 opacity: 1
     img
-        width: get-vw(220px)
+        width: get-vw(300px)
     p
         //padding: get-vw(10px) get-vw(35px)
         max-width: 15vw
@@ -430,8 +468,10 @@ p
     stroke-width: 3
     stroke-miterlimit: 10
     transition: all 0.5s ease-in-out
-.page_puzzle__rect
+.page_puzzle__rect1
     clip-path: url(#SVGID_2_puzzle-row)
+.page_puzzle__rect
+    //clip-path: url(#SVGID_2_puzzle-row)
     fill: #F0F8FF
 .page_puzzle__rect3
     clip-path: url(#clip-path3)
@@ -441,6 +481,8 @@ p
     clip-path: url(#clip-path-4)
 .page_puzzle__rect44
     clip-path: url(#clip-path-44)
+.shapeOfInnerPuzzle3
+    fill: #f0f8ff
 .page_puzzle__image
     filter: grayscale(100%)
     opacity: 0.2
@@ -773,16 +815,16 @@ p
                     &--1
                         z-index: 4
                     &--2
-                        transform: translateY(get-vw(20px))
+                        transform: translateY(get-vw(7px))
                         z-index: 3
                     &--3
-                        transform: translateY(get-vw(39px))
+                        transform: translateY(get-vw(14px))
                         z-index: 2
                     &--4
-                        transform: translate(32px, get-vw(58px))
+                        transform: translate(32px, get-vw(21px))
                         z-index: 1
                     &--5
-                        transform: translate(32px, get-vw(77px))
+                        transform: translate(32px, get-vw(28px))
                         z-index: 0
             &--2
                 width: 20%
@@ -915,7 +957,8 @@ p
     flex-direction: row
     margin: 3vw auto 1vw
     width: get-vw(1170px)
-    height: get-vw(354px)
+    height: auto
+    padding: 2vw
     background-color: $c-white
     background-image: url(../img/sermion-puzzle-bg-1.png)
     background-repeat: no-repeat
@@ -984,6 +1027,68 @@ p
         font-size: get-vw(16px)
         color: #c3d3dd
 
+.disclaimer
+    background-color: $c-white
+    background-image: url(../img/sermion-puzzle-bg-1.png)
+    background-repeat: no-repeat
+    background-position: right top
+    background-size: get-vw(270px) get-vw(270px)
+    border-radius: get-vw(10px)
+    box-shadow: 0 2px 21px -3px rgb(211, 208, 209)
+    width: get-vw(936px)
+    height: get-vw(450px)
+    margin: 5vw auto
+    position: absolute
+    top: 1.5%
+    left: 50%
+    transform: translateX(-50%)
+    z-index: 2
+    display: none
 
+.disclaimer_top-row
+    width: 100%
+    height: 55%
+    padding: 2vw
+    p
+        font-family: $r-medium
+        font-size: get-vw(18px)
+        margin-bottom: 0.5vw
+    h2
+        font-family: $r-bold
+        font-size: get-vw(28px)
+        color: $c-blue
+        -webkit-font-smoothing: subpixel-antialiased
+        margin-bottom: 1vw
+        padding: 0 3vw
+    .disclaimer_top-row_buttons-container
+        display: flex
+        justify-content: center
+        .button
+            margin: 0
+        #buy_blue-button
+            margin-right: 1vw
+        #buy_white-button
+            margin-left: 1vw
+.disclaimer_bottom-row
+    width: 100%
+    height: 45%
+    overflow: scroll
+    background-color: #f2f2f2
+    padding: 2vw
+    h5
+        font-family: $os-bold
+        font-size: get-vw(18px)
+        margin-bottom: 1vw
+    ul
+        text-align: left
+        font-family: $r-regular
+        font-size: get-vw(16px)
+        margin-bottom: 2vw
+    li
+        padding-bottom: 0.5vw
+        &:first-child
+            font-family: $r-bold
+.blured
+    filter: blur(5px)
 
 @import "media"
