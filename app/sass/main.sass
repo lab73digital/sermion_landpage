@@ -133,13 +133,16 @@ svg
     fill: none
     user-select: none
 .puzzle_text--big
-    font-size: get-vw(42px)
+    font-size: get-vw(36px)
 .puzzle_text_good
     font-family: $os-bold
-    font-size: get-vw(24px)
+    font-size: get-vw(36px)
     text-transform: uppercase
-    fill: none
+    //fill: none
     user-select: none
+    opacity: 0
+    display: none
+    //width: 5vw
 .shadow-puzzles
     filter: url(#f1)
 
@@ -469,6 +472,7 @@ svg
             .page_puzzle__image
                 filter: grayscale(0%)
                 opacity: 1
+                cursor: pointer
     img
         width: get-vw(300px)
     p
@@ -509,8 +513,8 @@ svg
 .shapeOfInnerPuzzle3
     fill: #f0f8ff
 .page_puzzle__image
-    filter: grayscale(100%)
     opacity: 0.2
+    filter: grayscale(100%)
     overflow: visible
     transition: all 0.5s ease-in-out
 .page_puzzle__active

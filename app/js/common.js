@@ -258,9 +258,7 @@ $(document).ready(function () {
 
 
     });
-    $('.page_puzzle').on('click', function () {
-        $(this).addClass('page_puzzle__active');
-    });
+
 
     $('.confirm,.discard').on('click', function () {
         $('.disclaimer').hide('slow');
@@ -377,9 +375,12 @@ $(document).ready(function () {
                 new TimelineMax().set('.head_puzzle--checked',
                     {
                         y: 0
-                    }).set('.puzzle_image_good',
+                    }).set($('.head_puzzle--checked').find('.puzzle_image_bad'),
                     {
-                        display: 'inline'
+                        opacity: 0, display: 'none'
+                    }).set($('.head_puzzle--checked').find('.puzzle_image_good'),
+                    {
+                        opacity: 1, display: 'inline'
                     }).set('.head-svg', {
                     position: 'absolute',
                     top: ttttop + '%',
@@ -395,6 +396,10 @@ $(document).ready(function () {
                             {
                                 top: ($('.head-svg').offset().top + $('.head-svg').height / 2) / windowHeight * 10 + '%',
                                 position: 'absolute'
+                            }).to($('.head_puzzle--pasted').find('.puzzle_text_good'), .5,
+                            {
+                                display:'inline',
+                                opacity:1
                             }).to('.head_puzzle--unchecked', 0.5,
                             {
                                 ease: Power1.easeInOut,
