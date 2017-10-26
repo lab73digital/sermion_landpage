@@ -87,31 +87,59 @@
 // }
 
 $(document).ready(function () {
-    $('.parallax').parallax({
-        imageSrc: 'img/doc-parallax/inside-bg.jpg',
-        speed: 0.8
+    //$('.sermion-page').hide();
+    //$('[class*="goto"]').hide();
+    // $('.parallax').parallax({
+    //     imageSrc: 'img/doc-parallax/inside-bg.jpg',
+    //     speed: 0.8
+    // });
+
+    $('.to-sermion').on('click', function () {
+        new TimelineMax().to('.screen-page:visible', 0.5, {
+            opacity:0,
+            display: 'none',
+            ease: Power1.easeInOut
+        }).fromTo('.sermion-page', 0.5, {
+            opacity: 0,
+            display: 'none',
+            y: $(window).height(),
+            ease: Power1.easeInOut
+        },{
+            opacity: 1,
+            display: 'block',
+            y: 0,
+            ease: Power1.easeInOut,
+            onComplete: function () {
+                $('.parallax').parallax({
+                    imageSrc: 'img/doc-parallax/inside-bg.jpg',
+                    speed: 0.8
+                    });
+            }
+        });
     });
+
     $('#screen-1_button').on('click', function () {
-        $('.screen-1_visible').toggleClass('hide');
-        $('.screen-1_hidden').toggleClass('show');
-        var puzzleTweenViolet = new TimelineMax().fromTo('#violet-1', 0.5,
+        TweenMax.to('.screen-1_visible', 0.7, {
+            opacity: 0,
+            onComplete: function () {
+                $('.screen-1_visible').toggleClass('hide');
+                $('.screen-1_hidden').toggleClass('show');
+                TweenMax.from('.screen-1_hidden', 0.7, {opacity: 0});
+            }
+        });
+        var puzzleTweenViolet = new TimelineMax().fromTo('#violet-1', 0.9,
             {
                 ease: Power1.easeInOut,
                 x: 0,
-                y:0,
+                y: 0,
                 rotation: 0
-            },{
+            }, {
                 ease: Power1.easeInOut,
-                x:-400,
-                y:0,
-                rotation: -25
-            }).fromTo('#violet-1', 2,
-            {
-                ease: Power1.easeInOut,
-                rotation: -25,
                 x: -400,
-                y: 0
-            },{
+                y: 0,
+                rotation: -25
+            }).to('#violet-1', 2,
+            {
                 ease: Power1.easeInOut,
                 rotation: -15,
                 x: -410,
@@ -119,14 +147,19 @@ $(document).ready(function () {
                 repeat: -1,
                 yoyo: true
             });
-        var puzzleTweenRed = new TimelineMax().fromTo('#red-2', 0.5, {ease: Power1.easeInOut,x:0,y:0,rotation: 0},
-                                                {ease: Power1.easeInOut,x:-300,y:200,rotation: -35}).fromTo('#red-2', 2,
+        var puzzleTweenRed = new TimelineMax().fromTo('#red-2', 0.9,
             {
                 ease: Power1.easeInOut,
-                rotation: -35,
+                x: 0,
+                y: 0,
+                rotation: 0
+            }, {
+                ease: Power1.easeInOut,
                 x: -300,
-                y: 200
-            },{
+                y: 200,
+                rotation: -35
+            }).to('#red-2', 2,
+            {
                 ease: Power1.easeInOut,
                 rotation: -25,
                 x: -310,
@@ -134,14 +167,19 @@ $(document).ready(function () {
                 repeat: -1,
                 yoyo: true
             });
-        var puzzleTweenYellow = new TimelineMax().fromTo('#yelloow-3', 0.5, {ease: Power1.easeInOut,x:0,y:0,rotation: 0},
-            {ease: Power1.easeInOut,x:280,y:-50,rotation: -20}).fromTo('#yelloow-3', 2,
+        var puzzleTweenYellow = new TimelineMax().fromTo('#yelloow-3', 0.9, {
+                ease: Power1.easeInOut,
+                x: 0,
+                y: 0,
+                rotation: 0
+            },
             {
                 ease: Power1.easeInOut,
-                rotation: -20,
                 x: 280,
-                y: -50
-            },{
+                y: -50,
+                rotation: -20
+            }).to('#yelloow-3', 2,
+            {
                 ease: Power1.easeInOut,
                 rotation: -30,
                 x: 290,
@@ -149,14 +187,19 @@ $(document).ready(function () {
                 repeat: -1,
                 yoyo: true
             });
-        var puzzleTweenBlue = new TimelineMax().fromTo('#blue-4', 0.5, {ease: Power1.easeInOut,x:0,y:0,rotation: 0},
-            {ease: Power1.easeInOut,x:300,y:50,rotation: 15}).fromTo('#blue-4', 2,
+        var puzzleTweenBlue = new TimelineMax().fromTo('#blue-4', 0.9, {
+                ease: Power1.easeInOut,
+                x: 0,
+                y: 0,
+                rotation: 0
+            },
             {
                 ease: Power1.easeInOut,
-                rotation: 15,
                 x: 300,
-                y: 50
-            },{
+                y: 50,
+                rotation: 15
+            }).to('#blue-4', 2,
+            {
                 ease: Power1.easeInOut,
                 rotation: 5,
                 x: 310,
@@ -168,26 +211,51 @@ $(document).ready(function () {
         $('.puzzle_text').addClass('puzzle_text--active');
         $('.violet-1,.red-2,.yelloow-3,.blue-4').addClass('shadow-puzzles');
 
-        $('#red-2').on('mouseenter', function () {
+
+        var puzzleTweenKilled = false;
+        $('#red-2').on('click', function () {
+            puzzleTweenRed.kill();
+            puzzleTweenKilled = true;
+        }).on('mouseenter', function () {
             puzzleTweenRed.paused(true);
         }).on('mouseleave', function () {
-            puzzleTweenRed.paused(false);
+            if (!puzzleTweenKilled) {
+                puzzleTweenRed.paused(false);
+            }
         });
-        $('#violet-1').on('mouseenter', function () {
+        $('#violet-1').on('click', function () {
+            puzzleTweenViolet.kill();
+            puzzleTweenKilled = true;
+        }).on('mouseenter', function () {
             puzzleTweenViolet.paused(true);
         }).on('mouseleave', function () {
-            puzzleTweenViolet.paused(false);
+            if (!puzzleTweenKilled) {
+                puzzleTweenViolet.paused(false);
+            }
         });
-        $('#blue-4').on('mouseenter', function () {
+        $('#blue-4').on('click', function () {
+            puzzleTweenBlue.kill();
+            puzzleTweenKilled = true;
+        }).on('mouseenter', function () {
             puzzleTweenBlue.paused(true);
         }).on('mouseleave', function () {
-            puzzleTweenBlue.paused(false);
+            if (!puzzleTweenKilled) {
+                puzzleTweenBlue.paused(false);
+            }
         });
-        $('#yelloow-3').on('mouseenter', function () {
+        $('#yelloow-3').on('click', function () {
+            puzzleTweenYellow.kill();
+            puzzleTweenKilled = true;
+        }).on('mouseenter', function () {
             puzzleTweenYellow.paused(true);
         }).on('mouseleave', function () {
-            puzzleTweenYellow.paused(false);
+            if (!puzzleTweenKilled) {
+                puzzleTweenYellow.paused(false);
+            }
         });
+
+        headPuzzleFistCheck();
+
 
     });
     $('.page_puzzle').on('click', function () {
@@ -197,27 +265,25 @@ $(document).ready(function () {
     $('.confirm,.discard').on('click', function () {
         $('.disclaimer').hide('slow');
         $('.screen-1').removeClass('blured');
-        });
-
-    // $('.screen-page, .sermion-page').hide();
-    // $('#violet-1').on('click',function () {
-    //     $('#violet-page').show();
-    // });
-
-    // $('#red-page').on('mouseenter', function () {
-    //     $(this).removeClass('page_puzzle__active');
-    //     $($('#red-page').find('.page_puzzle').get(0)).addClass('page_puzzle__active');
-    // });
+    });
 
 
-    $('.page_puzzle__active').everyTime(1500, function () {
-        if (!$('.page_puzzle__active').parent().next().length) {
-            $('.page_puzzle__active').removeClass('page_puzzle__active');
-            $($('.page_puzzle').get(0)).addClass('page_puzzle__active');
-        } else {
-            $('.page_puzzle__active').removeClass('page_puzzle__active').parent().next().find('.page_puzzle').addClass('page_puzzle__active');
-        }
-    },0);
+    function pagePuzzlesSwitcher(activePage) {
+        $('.page_puzzle').removeClass('page_puzzle__active');
+        $(activePage)
+            .find('.page_puzzle_first-item').addClass('page_puzzle__active');
+        $('.page_puzzle__active').everyTime(1500, function () {
+            if (!$('.page_puzzle__active').parent().next().length) {
+                $('.page_puzzle__active').removeClass('page_puzzle__active');
+                $(activePage)
+                    .find('.page_puzzle_first-item').addClass('page_puzzle__active');
+            } else {
+                $('.page_puzzle__active').removeClass('page_puzzle__active').parent().next().find('.page_puzzle').addClass('page_puzzle__active');
+            }
+        }, 0);
+
+    }
+
     // $('svg').on('click', function () {
     //     $('.screen-1').hide();
     // })
@@ -239,7 +305,7 @@ $(document).ready(function () {
             $(this).animateNumber({
                 number: number * decimal_factor,
 
-                numberStep: function(now, tween) {
+                numberStep: function (now, tween) {
                     var floored_number = Math.floor(now) / decimal_factor,
                         target = $(tween.elem);
 
@@ -288,6 +354,121 @@ $(document).ready(function () {
         reverse: false
     }).setTween(tween2).addTo(controller);
 
+
+    $('.head_puzzle--click').on('click', function () {
+        TweenMax.killChildTweensOf(document.getElementById("#headsvg"));
+    });
+
+    var scrolledToBottom = false;
+    $(window).on('scroll', function () {
+        if (scrolledToBottom) {
+            return
+        }
+        if ($('.screen-page:visible').length) {
+            var bodyTop = $(window).scrollTop(),
+                visiblePage = $('.screen-page:visible').height(),
+                windowHeight = $(window).height(),
+                headSvgLeft = '';
+            var headPosTop = (bodyTop / (visiblePage - windowHeight));
+            if (headPosTop * 30 > 24) {
+                var ttttop = ($('.head-svg').offset().top + $('.head-svg').height() / 2) / visiblePage * 100;
+                var lllleft = ($('.head-svg').offset().left + $('.head-svg').width() / 2) / $('.screen-page:visible').width() * 100;
+                console.log(ttttop, lllleft);
+                new TimelineMax().set('.head_puzzle--checked',
+                    {
+                        y: 0
+                    }).set('.puzzle_image_good',
+                    {
+                        display: 'inline'
+                    }).set('.head-svg', {
+                    position: 'absolute',
+                    top: ttttop + '%',
+                    left: lllleft + '%'
+                }).to('.head-svg', 2, {
+                    bezier: [{left: lllleft + '%', top: ttttop + '%'},{left: '30%', top: 90 + '%'},
+                        {left: '50%', top: 93 + '%'}],
+                    ease: Power1.easeInOut,
+                    onComplete: function () {
+                        $('.head_puzzle--checked').addClass('head_puzzle--pasted');
+                        $('.head_puzzle--pasted').removeClass('head_puzzle--checked');
+                        new TimelineMax().set('.head-svg',
+                            {
+                                top: ($('.head-svg').offset().top + $('.head-svg').height / 2) / windowHeight * 10 + '%',
+                                position: 'absolute'
+                            }).to('.head_puzzle--unchecked', 0.5,
+                            {
+                                ease: Power1.easeInOut,
+                                opacity: 1,
+                                display: 'block',
+                                onComplete: function () {
+                                    $('.head_puzzle--unchecked').find('.puzzle_text').addClass('puzzle_text--big');
+                                }
+                            });
+                    }
+                });
+                scrolledToBottom = true;
+            } else {
+                headSvgLeft = '7vw';
+                TweenMax.set('.head-svg',
+                    {
+                        top: 50 + (headPosTop * 30) + 'vh',
+                        left: headSvgLeft
+                    });
+                TweenMax.set('.head_puzzle--checked',
+                    {
+                        y: -800 + headPosTop * 800
+                    });
+            }
+
+        }
+    });
+
+    function headPuzzleFistCheck() {
+        $('.head_puzzle--click').on('click', function () {
+            if (!$('.head_puzzle--pasted').length) {
+                //TweenMax.killChildTweensOf( document.getElementById("#headsvg") );
+                var goto = $(this).data('goto-page');
+                pagePuzzlesSwitcher(goto);
+                TweenMax.to('.screen-1', 1,
+                    {
+                        ease: Power1.easeInOut,
+                        opacity: 0,
+                        display: 'none',
+                        onComplete: function () {
+                            new TimelineMax().set(goto,
+                                {display:'block'}).fromTo(goto, 1,
+                                {ease: Power1.easeInOut,opacity: 0,y:$(window).height() + 'px'},
+                                {ease: Power1.easeInOut,opacity: 1,y:0});
+                        }
+                    });
+                $(this).removeClass('head_puzzle--unchecked').addClass('head_puzzle--checked')
+                    .find('.puzzle_text').css('display','none');
+                TweenMax.to('.head_puzzle--unchecked', 0.5,
+                    {
+                        ease: Power1.easeInOut,
+                        opacity: 0,
+                        display: 'none',
+                        onComplete: function () {
+                            TweenMax.to('.head-svg', 1,
+                                {
+                                    ease: Power1.easeInOut,
+                                    left: ('7vw'),
+                                    //top: 400 + 'px',
+                                    height: ('10vw'),
+                                    position: 'fixed'
+                                });
+                            TweenMax.to('.head_puzzle--checked', 1,
+                                {
+                                    ease: Power1.easeInOut,
+                                    x: 0,
+                                    y: -800,
+                                    rotation: 360
+                                });
+                        }
+                    });
+            }
+        })
+    }
 
 });
 
