@@ -133,7 +133,7 @@ svg
     fill: none
     user-select: none
 .puzzle_text--big
-    font-size: get-vw(36px)
+    font-size: get-vw(30px)
 .puzzle_text_good
     font-family: $os-bold
     font-size: get-vw(36px)
@@ -143,6 +143,7 @@ svg
     opacity: 0
     display: none
     //width: 5vw
+    cursor: auto
 .shadow-puzzles
     filter: url(#f1)
 
@@ -942,7 +943,7 @@ svg
                 width: get-vw(75px)
                 height: get-vw(75px)
                 border-radius: 50%
-                cursor: pointer
+                //cursor: pointer
                 p
                     color: $c-white
                     padding: 0.7vw
@@ -950,21 +951,12 @@ svg
             .blue_circle
                 background-color: $c-blue
                 border: solid get-vw(3px) #77C9E5
-                transition: all 0.3s linear
-                &:hover
-                    border: double get-vw(5px) #77C9E5
             .green_circle
                 background-color: $c-green
                 border: solid get-vw(3px) #D2E5BA
-                transition: all 0.3s ease-in-out
-                &:hover
-                    border: dashed get-vw(5px) #D2E5BA
             .yellow_circle
                 background-color: $c-yellow
                 border: solid get-vw(3px) #FFF6C2
-                transition: all 0.3s linear
-                &:hover
-                    border: dotted get-vw(5px) #FFF6C2
 
 .puzzle_green-light
     fill: #a4f499

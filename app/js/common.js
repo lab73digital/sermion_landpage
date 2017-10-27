@@ -95,16 +95,21 @@ $(document).ready(function () {
     // });
 
     $('.to-sermion').on('click', function () {
+        headPuzzleGatherAll();
+        scrolledToBottom = false;
         new TimelineMax().to('.screen-page:visible', 0.5, {
-            opacity:0,
+            opacity: 0,
             display: 'none',
-            ease: Power1.easeInOut
+            ease: Power1.easeInOut,
+            onComplete: function () {
+                $('body').scrollTop(0);
+            }
         }).fromTo('.sermion-page', 0.5, {
             opacity: 0,
             display: 'none',
             y: $(window).height(),
             ease: Power1.easeInOut
-        },{
+        }, {
             opacity: 1,
             display: 'block',
             y: 0,
@@ -113,9 +118,79 @@ $(document).ready(function () {
                 $('.parallax').parallax({
                     imageSrc: 'img/doc-parallax/inside-bg.jpg',
                     speed: 0.8
+                });
+
+
+                var controller = new ScrollMagic.Controller();
+                var tween1 = new TimelineMax().fromTo('.s-3__graph-line, .s-3__graph-circle, .s-3__graph-percent', 1, {
+                    opacity: 0
+                }, {
+                    opacity: 1
+                }).add(TweenMax.from('.s-3__graph-circle, .s-3__graph-percent', 1, {
+                    bottom: 0
+                }), '.s-3__graph-line, .s-3__graph-circle, .s-3__graph-percent').add(TweenMax.from('.s-3__graph-line', 1, {
+                    height: 0
+                }), '.s-3__graph-line, .s-3__graph-circle, .s-3__graph-percent').add(function () {
+                    $('.s-3__animate-number').each(function () {
+                        var number = $(this).data('number');
+                        var decimal_places = 1;
+                        var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
+                        $(this).animateNumber({
+                            number: number * decimal_factor,
+
+                            numberStep: function (now, tween) {
+                                var floored_number = Math.floor(now) / decimal_factor,
+                                    target = $(tween.elem);
+
+                                if (decimal_places > 0) {
+                                    // force decimal places even if they are 0
+                                    floored_number = floored_number.toFixed(decimal_places);
+
+                                    // replace '.' separator with ','
+                                    floored_number = floored_number.toString();
+                                }
+
+                                target.text(floored_number);
+                            }
+                        }, 1000)
                     });
+                }, '.s-3__graph-line, .s-3__graph-circle, .s-3__graph-percent');
+
+                var tween2 = new TimelineMax().from('.s-4__graph-item_row--1', .6, {
+                    ease: Power1.easeInOut,
+                    opacity: 0,
+                    y: -50
+                }).from('.s-4__graph-item_row--2', .6, {
+                    ease: Power1.easeInOut,
+                    opacity: 0,
+                    y: -50
+                }).from('.s-4__graph-item_row--3', .6, {
+                    ease: Power1.easeInOut,
+                    opacity: 0,
+                    y: -50
+                }).from('.s-4__graph-item_row--4', .6, {
+                    ease: Power1.easeInOut,
+                    opacity: 0,
+                    y: -50
+                }).from('.s-4__graph-item_row--5', .6, {
+                    ease: Power1.easeInOut,
+                    opacity: 0,
+                    y: -50
+                });
+
+                new ScrollMagic.Scene({
+                    triggerElement: ".s-3",
+                    reverse: false
+                }).setTween(tween1).addTo(controller);
+                new ScrollMagic.Scene({
+                    triggerElement: ".s-4",
+                    reverse: false
+                }).setTween(tween2).addTo(controller);
+
             }
         });
+
+
     });
 
     $('#screen-1_button').on('click', function () {
@@ -267,90 +342,19 @@ $(document).ready(function () {
 
 
     function pagePuzzlesSwitcher(activePage) {
-        $('.page_puzzle').removeClass('page_puzzle__active');
-        $(activePage)
-            .find('.page_puzzle_first-item').addClass('page_puzzle__active');
-        $('.page_puzzle__active').everyTime(1500, function () {
-            if (!$('.page_puzzle__active').parent().next().length) {
-                $('.page_puzzle__active').removeClass('page_puzzle__active');
-                $(activePage)
-                    .find('.page_puzzle_first-item').addClass('page_puzzle__active');
+        console.log(activePage);
+        $('.page_puzzle__active').removeClass('page_puzzle__active');
+        $(activePage).find('.page_puzzle_first-item').addClass('page_puzzle__active');
+        $(activePage).find('.page_puzzle__active').everyTime(2500, function () {
+            if (!$(activePage).find('.page_puzzle__active').parent().next().length) {
+                $(activePage).find('.page_puzzle__active').removeClass('page_puzzle__active');
+                $(activePage).find('.page_puzzle_first-item').addClass('page_puzzle__active');
             } else {
-                $('.page_puzzle__active').removeClass('page_puzzle__active').parent().next().find('.page_puzzle').addClass('page_puzzle__active');
+                $(activePage).find('.page_puzzle__active').removeClass('page_puzzle__active').parent().next().find('.page_puzzle').addClass('page_puzzle__active');
             }
-        }, 0);
+        });
 
     }
-
-    // $('svg').on('click', function () {
-    //     $('.screen-1').hide();
-    // })
-
-    var controller = new ScrollMagic.Controller();
-    var tween1 = new TimelineMax().fromTo('.s-3__graph-line, .s-3__graph-circle, .s-3__graph-percent', 1, {
-        opacity: 0
-    }, {
-        opacity: 1
-    }).add(TweenMax.from('.s-3__graph-circle, .s-3__graph-percent', 1, {
-        bottom: 0
-    }), '.s-3__graph-line, .s-3__graph-circle, .s-3__graph-percent').add(TweenMax.from('.s-3__graph-line', 1, {
-        height: 0
-    }), '.s-3__graph-line, .s-3__graph-circle, .s-3__graph-percent').add(function () {
-        $('.s-3__animate-number').each(function () {
-            var number = $(this).data('number');
-            var decimal_places = 1;
-            var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
-            $(this).animateNumber({
-                number: number * decimal_factor,
-
-                numberStep: function (now, tween) {
-                    var floored_number = Math.floor(now) / decimal_factor,
-                        target = $(tween.elem);
-
-                    if (decimal_places > 0) {
-                        // force decimal places even if they are 0
-                        floored_number = floored_number.toFixed(decimal_places);
-
-                        // replace '.' separator with ','
-                        floored_number = floored_number.toString();
-                    }
-
-                    target.text(floored_number);
-                }
-            }, 1000)
-        });
-    }, '.s-3__graph-line, .s-3__graph-circle, .s-3__graph-percent');
-
-    var tween2 = new TimelineMax().from('.s-4__graph-item_row--1', .6, {
-        ease: Power1.easeInOut,
-        opacity: 0,
-        y: -50
-    }).from('.s-4__graph-item_row--2', .6, {
-        ease: Power1.easeInOut,
-        opacity: 0,
-        y: -50
-    }).from('.s-4__graph-item_row--3', .6, {
-        ease: Power1.easeInOut,
-        opacity: 0,
-        y: -50
-    }).from('.s-4__graph-item_row--4', .6, {
-        ease: Power1.easeInOut,
-        opacity: 0,
-        y: -50
-    }).from('.s-4__graph-item_row--5', .6, {
-        ease: Power1.easeInOut,
-        opacity: 0,
-        y: -50
-    });
-
-    new ScrollMagic.Scene({
-        triggerElement: ".s-3",
-        reverse: false
-    }).setTween(tween1).addTo(controller);
-    new ScrollMagic.Scene({
-        triggerElement: ".s-4",
-        reverse: false
-    }).setTween(tween2).addTo(controller);
 
 
     $('.head_puzzle--click').on('click', function () {
@@ -358,81 +362,98 @@ $(document).ready(function () {
     });
 
     var scrolledToBottom = false;
-    $(window).on('scroll', function () {
-        if (scrolledToBottom) {
-            return
-        }
-        if ($('.screen-page:visible').length) {
-            var bodyTop = $(window).scrollTop(),
-                visiblePage = $('.screen-page:visible').height(),
-                windowHeight = $(window).height(),
-                headSvgLeft = '';
-            var headPosTop = (bodyTop / (visiblePage - windowHeight));
-            if (headPosTop * 30 > 24) {
-                var ttttop = ($('.head-svg').offset().top + $('.head-svg').height() / 2) / visiblePage * 100;
-                var lllleft = ($('.head-svg').offset().left + $('.head-svg').width() / 2) / $('.screen-page:visible').width() * 100;
-                console.log(ttttop, lllleft);
-                new TimelineMax().set('.head_puzzle--checked',
-                    {
-                        y: 0
-                    }).set($('.head_puzzle--checked').find('.puzzle_image_bad'),
-                    {
-                        opacity: 0, display: 'none'
-                    }).set($('.head_puzzle--checked').find('.puzzle_image_good'),
-                    {
-                        opacity: 1, display: 'inline'
-                    }).set('.head-svg', {
-                    position: 'absolute',
-                    top: ttttop + '%',
-                    left: lllleft + '%'
-                }).to('.head-svg', 2, {
-                    bezier: [{left: lllleft + '%', top: ttttop + '%'},{left: '30%', top: 90 + '%'},
-                        {left: '50%', top: 93 + '%'}],
-                    ease: Power1.easeInOut,
-                    onComplete: function () {
-                        $('.head_puzzle--checked').addClass('head_puzzle--pasted');
-                        $('.head_puzzle--pasted').removeClass('head_puzzle--checked');
-                        new TimelineMax().set('.head-svg',
-                            {
-                                top: ($('.head-svg').offset().top + $('.head-svg').height / 2) / windowHeight * 10 + '%',
-                                position: 'absolute'
-                            }).to($('.head_puzzle--pasted').find('.puzzle_text_good'), .5,
-                            {
-                                display:'inline',
-                                opacity:1
-                            }).to('.head_puzzle--unchecked', 0.5,
-                            {
-                                ease: Power1.easeInOut,
-                                opacity: 1,
-                                display: 'block',
-                                onComplete: function () {
-                                    $('.head_puzzle--unchecked').find('.puzzle_text').addClass('puzzle_text--big');
-                                }
-                            });
-                    }
-                });
-                scrolledToBottom = true;
-            } else {
-                headSvgLeft = '7vw';
-                TweenMax.set('.head-svg',
-                    {
-                        top: 50 + (headPosTop * 30) + 'vh',
-                        left: headSvgLeft
-                    });
-                TweenMax.set('.head_puzzle--checked',
-                    {
-                        y: -800 + headPosTop * 800
-                    });
+    function scrollHead () {
+        $(window).on('scroll', function () {
+            if (scrolledToBottom) {
+                //scrolledToBottom = false;
+                return
             }
+            if ($('.screen-page:visible').length) {
+                var bodyTop = $(window).scrollTop(),
+                    visiblePage = $('.screen-page:visible').height(),
+                    windowHeight = $(window).height(),
+                    headSvgLeft = '';
+                var headPosTop = (bodyTop / (visiblePage - windowHeight));
+                if (headPosTop * 30 > 24) {
+                    var ttttop = ($('.head-svg').offset().top + $('.head-svg').height() / 2) / visiblePage * 100;
+                    var lllleft = ($('.head-svg').offset().left + $('.head-svg').width() / 2) / $('.screen-page:visible').width() * 100;
+                    //console.log(ttttop, lllleft);
+                    new TimelineMax().set('.head_puzzle--checked',
+                        {
+                            y: 0
+                        }).set($('.head_puzzle--checked').find('.puzzle_image_bad'),
+                        {
+                            opacity: 0, display: 'none'
+                        }).set($('.head_puzzle--checked').find('.puzzle_image_good'),
+                        {
+                            opacity: 1, display: 'inline'
+                        }).set('.head-svg', {
+                        position: 'absolute',
+                        top: ttttop + '%',
+                        left: lllleft + '%'
+                    }).to('.head-svg', 2, {
+                        bezier: [{left: lllleft + '%', top: ttttop + '%'}, {left: '15%', top: 90 + '%'},
+                            {left: '50%', top: 93 + '%'}],
+                        ease: Power1.easeInOut,
+                        onComplete: function () {
+                            $('.head_puzzle--checked').addClass('head_puzzle--pasted');
+                            $('.head_puzzle--pasted').removeClass('head_puzzle--checked').removeClass('head_puzzle--click');
+                            new TimelineMax().set('.head-svg',
+                                {
+                                    top: ($('.head-svg').offset().top + $('.head-svg').height / 2) / windowHeight * 10 + '%',
+                                    position: 'absolute'
+                                }).to($('.head_puzzle--pasted').find('.puzzle_text_good'), .5,
+                                {
+                                    display: 'inline',
+                                    opacity: 1
+                                }).to('.head_puzzle--unchecked', 0.5,
+                                {
+                                    ease: Power1.easeInOut,
+                                    opacity: 1,
+                                    display: 'block',
+                                    onComplete: function () {
+                                        $('.head_puzzle--unchecked').find('.puzzle_text').addClass('puzzle_text--big');
+                                        headPuzzleCheck();
+                                    }
+                                });
+                        }
+                    });
+                    scrolledToBottom = true;
+                } else {
+                    headSvgLeft = '7vw';
+                    TweenMax.set('.head-svg',
+                        {
+                            top: 50 + (headPosTop * 30) + 'vh',
+                            left: headSvgLeft
+                        });
+                    TweenMax.set('.head_puzzle--checked',
+                        {
+                            y: -800 + headPosTop * 800
+                        });
+                }
+            } else if ($('.sermion-page:visible').length) {
+                //console.log('sermion-page is ready to scroll');
+                var bodyTopSer = $(window).scrollTop(),
+                    visiblePageSer = $('.sermion-page:visible').height(),
+                    windowHeightSer = $(window).height(),
+                    headPosTopSer = (bodyTopSer / (visiblePageSer - windowHeightSer)),
+                    headSvgLeftSer = '7%';
+                    TweenMax.set('.head-svg',
+                        {
+                            top: 20 + (headPosTopSer * 50) + '%',
+                            left: headSvgLeftSer
+                        });
+            }
+        });
+    }
+    scrollHead();
 
-        }
-    });
 
     function headPuzzleFistCheck() {
         $('.head_puzzle--click').on('click', function () {
             if (!$('.head_puzzle--pasted').length) {
-                //TweenMax.killChildTweensOf( document.getElementById("#headsvg") );
                 var goto = $(this).data('goto-page');
+                //$('.page_puzzle__active').removeClass('page_puzzle__active');
                 pagePuzzlesSwitcher(goto);
                 TweenMax.to('.screen-1', 1,
                     {
@@ -441,13 +462,13 @@ $(document).ready(function () {
                         display: 'none',
                         onComplete: function () {
                             new TimelineMax().set(goto,
-                                {display:'block'}).fromTo(goto, 1,
-                                {ease: Power1.easeInOut,opacity: 0,y:$(window).height() + 'px'},
-                                {ease: Power1.easeInOut,opacity: 1,y:0});
+                                {display: 'block'}).fromTo(goto, 1,
+                                {ease: Power1.easeInOut, opacity: 0, y: $(window).height() + 'px'},
+                                {ease: Power1.easeInOut, opacity: 1, y: 0});
                         }
                     });
                 $(this).removeClass('head_puzzle--unchecked').addClass('head_puzzle--checked')
-                    .find('.puzzle_text').css('display','none');
+                    .find('.puzzle_text').css('display', 'none');
                 TweenMax.to('.head_puzzle--unchecked', 0.5,
                     {
                         ease: Power1.easeInOut,
@@ -471,8 +492,132 @@ $(document).ready(function () {
                                 });
                         }
                     });
-            }
+            } else {headPuzzleCheck()}
         })
+    }
+
+    function headPuzzleCheck() {
+            $('.head_puzzle--click').on('click', function () {
+                //if (!$(this).hasClass('head_puzzle--pasted')) {
+                    if (true) {
+                    $(this).removeClass('head_puzzle--unchecked').addClass('head_puzzle--checked')
+                        .find('.puzzle_text').css('display', 'none');
+                    new TimelineMax().to('.puzzle_text_good', .5,
+                        {
+                            display: 'none',
+                            opacity: 0
+                        });
+                    TweenMax.to('.head_puzzle--unchecked', .5,
+                        {
+                            ease: Power1.easeInOut,
+                            opacity: 0,
+                            display: 'none',
+                            onComplete: function () {
+                                var tttttop = ($(window).height() - ($('.screen-page:visible').height() - $('.head-svg').offset().top - ($('.head-svg').height()) / 2)) / $(window).height() * 100;
+                                var llllleft = ($('.head-svg').offset().left + $('.head-svg').width() / 2) / $('.screen-page:visible').width() * 100;
+                                //console.log(llllleft, tttttop);
+                                new TimelineMax().set('.head-svg',
+                                    {
+                                        position: 'fixed',
+                                        top: tttttop + '%',
+                                        left: llllleft + '%'
+                                    }).to('.head-svg', 1,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        bezier: [{left: llllleft + '%', top: tttttop + '%'}, {
+                                            left: 28 + '%',
+                                            top: 75 + '%'
+                                        }, {left: 7 + '%', top: 50 + '%'}]
+                                    });
+                                TweenMax.to('.head_puzzle--checked', .9,
+                                    {
+                                        x: 0,
+                                        y: -800,
+                                        rotation: 360
+                                    });
+                            }
+                        });
+                    var goto = $(this).data('goto-page');
+                        //$('.page_puzzle__active').removeClass('page_puzzle__active');
+                        pagePuzzlesSwitcher(goto);
+                    TweenMax.to('.screen-page:visible', 1,
+                        {
+                            ease: Power1.easeInOut,
+                            opacity: 0,
+                            display: 'none',
+                            onComplete: function () {
+                                $('body').scrollTop(0);
+                                new TimelineMax().set(goto,
+                                    {display: 'block'}).fromTo(goto, 1,
+                                    {ease: Power1.easeInOut, opacity: 0, y: $(window).height() + 'px'},
+                                    {
+                                        ease: Power1.easeInOut, opacity: 1, y: 0, onComplete: function () {
+                                        scrollHead();
+                                        scrolledToBottom = false;
+                                    }
+                                    });
+                            }
+                        });
+                }
+            })
+}
+
+
+    function headPuzzleGatherAll() {
+            $('.head_puzzle--click').removeClass('head_puzzle--unchecked').addClass('head_puzzle--checked')
+                .find('.puzzle_text').css('display', 'none');
+            new TimelineMax().to('.puzzle_text_good', .5,
+                {
+                    display: 'none',
+                    opacity: 0
+                });
+            TweenMax.to('.head_puzzle--unchecked', .5,
+                {
+                    ease: Power1.easeInOut,
+                    opacity: 1,
+                    x:0,
+                    y:0,
+                    onComplete: function () {
+                        var tttttop = ($(window).height() - ($('.screen-page:visible').height() - $('.head-svg').offset().top - ($('.head-svg').height())/2)) / $(window).height() * 100;
+                        var llllleft = ($('.head-svg').offset().left + $('.head-svg').width() / 2) / $('.screen-page:visible').width() * 100;
+                        //console.log(llllleft, tttttop);
+                        new TimelineMax().set('.head-svg',
+                            {
+                                position: 'fixed',
+                                top: tttttop + '%',
+                                left: llllleft + '%'
+                            }).to('.head-svg', 1,
+                            {
+                                ease: Power1.easeInOut,
+                                bezier: [{left: llllleft + '%', top: tttttop + '%'}, {left: 28 + '%', top: 75 + '%'}, {left: 7 + '%', top: 20 + '%'}]
+                            });
+                        TweenMax.to('.head_puzzle--checked', .9,
+                            {
+                                x: 0,
+                                y: 0,
+                                rotation: 360
+                            });
+                    }
+                });
+            var goto = $(this).data('goto-page');
+            //pagePuzzlesSwitcher(goto);
+            TweenMax.to('.screen-page:visible', 1,
+                {
+                    ease: Power1.easeInOut,
+                    opacity: 0,
+                    display: 'none',
+                    onComplete: function () {
+                        $('body').scrollTop(0);
+                        new TimelineMax().set(goto,
+                            {display: 'block'}).fromTo(goto, 1,
+                            {ease: Power1.easeInOut, opacity: 0, y: $(window).height() + 'px'},
+                            {ease: Power1.easeInOut, opacity: 1, y: 0, onComplete: function () {
+                                scrollHead();
+                                scrolledToBottom = false;
+                                $('.violet-1,.red-2,.yelloow-3,.blue-4').removeClass('shadow-puzzles');
+                            }});
+                    }
+                });
     }
 
 });
