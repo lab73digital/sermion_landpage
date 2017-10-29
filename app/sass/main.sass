@@ -123,20 +123,20 @@ svg
     transform: translate3d(-50%,-50%, .1px)
     .violet-1,.red-2,.yelloow-3,.blue-4
         cursor: pointer
-        &:hover
-            .puzzle_text--active
-                fill: #615f5f
+.puzzle_text--active
+    fill: #615f5f
 .puzzle_text
     font-family: $os-bold
     font-size: get-vw(24px)
     text-transform: uppercase
     fill: none
     user-select: none
+    opacity: 0
 .puzzle_text--big
-    font-size: get-vw(30px)
+    font-size: get-vw(32px)
 .puzzle_text_good
     font-family: $os-bold
-    font-size: get-vw(36px)
+    font-size: get-vw(40px)
     text-transform: uppercase
     //fill: none
     user-select: none
@@ -146,6 +146,8 @@ svg
     cursor: auto
 .shadow-puzzles
     filter: url(#f1)
+    //text
+        filter: url(#f2)
 
 .screen-1_side-quotes
     position: absolute
@@ -456,12 +458,6 @@ svg
     align-self: flex-start
     flex-basis: 20%
     text-align: center
-    &:first-child
-        svg
-            //margin-left: 1vw
-    &:last-child
-        svg
-            //margin-right: 2vw
     svg
         width: get-vw(208px)
         height: get-vw(208px)
@@ -947,6 +943,7 @@ svg
                 p
                     color: $c-white
                     padding: 0.7vw
+                    opacity: 0
                 margin: 0.5vw auto
             .blue_circle
                 background-color: $c-blue
@@ -1048,6 +1045,19 @@ svg
         font-size: get-vw(16px)
         color: #c3d3dd
 
+.disclaimer_overlay
+    position: fixed
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    z-index: 5
+    background-color: $c-white
+    filter: blur(5px)
+    opacity: 0.2
+.sermion-overlay
+    filter: blur(4px)
+    //position: fixed
 .disclaimer
     background-color: $c-white
     background-image: url(../img/sermion-puzzle-bg-1.png)
@@ -1060,12 +1070,12 @@ svg
     height: get-vw(450px)
     margin: 5vw auto
     position: absolute
-    top: 1.5%
+    top: 20vh
     left: 50%
     transform: translateX(-50%)
-    z-index: 2
+    //z-index: 6
     display: none
-
+    filter: blur(0px)
 .disclaimer_top-row
     width: 100%
     height: 55%
