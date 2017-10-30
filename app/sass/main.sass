@@ -31,8 +31,9 @@ body
     font-family: $r-medium
     text-align: center
     //overflow: hidden
-    color: $c-black
+    //color: $c-black
     //height: 100vh
+    color: #666666
     margin: 0
     padding: 0
     border: 0
@@ -57,6 +58,7 @@ p
     cursor: pointer
 
 .screen-1
+    opacity: 0
     height: 100vh
     width: 100vw
     background-image: url(../img/sermion-puzzle-bg-1.png), url(../img/sermion-puzzle-bg-2.png), url(../img/sermion-puzzle-bg-3.png), url(../img/sermion-bg-shape.jpg)
@@ -64,7 +66,10 @@ p
     background-position: right top, right bottom, left bottom, center bottom
     background-size: get-vw(599px) get-vw(599px), get-vw(599px) get-vw(599px), get-vw(599px) get-vw(599px), contain
 
-
+#screen-1_button
+    margin-right: auto
+    margin-left: auto
+    cursor: pointer
 
 .screen-1_content-container
     //position: relative
@@ -94,6 +99,7 @@ p
     .p__bold
         font-family: $r-bold
         padding-bottom: 2vw
+        color: $c-black
     .p__blue
         color: $c-blue
     h2
@@ -102,6 +108,7 @@ p
         font-family: $os-bold
         padding-top: 1vw
         padding-bottom: 1vw
+        color: $c-black
 .head-container
     height: get-vh(351px)
     width: 100vw
@@ -110,8 +117,9 @@ p
     position: absolute
     top: 35vh
 svg
-    pointer-events: auto
+    pointer-events: none
 .head-svg
+    opacity: 0
     height: get-vh(351px)
     width: 100%
     overflow: visible
@@ -259,7 +267,8 @@ svg
 .screen-1_pointer
     height: get-vw(53px)
     width: get-vw(33px)
-    margin: 3vw auto 2vw
+    margin: 3vw auto 0
+    overflow: visible
 
 .screen-page_header
     position: relative
@@ -270,6 +279,9 @@ svg
     background-repeat: no-repeat
     background-position: right top
     background-size: get-vw(799px) get-vw(799px)
+    h2
+        padding-top: 2vw
+        color: $c-black
 .screen-page
     display: none
     h1
@@ -285,6 +297,7 @@ svg
         font-size: get-vw(28px)
         text-transform: uppercase
         margin: 1vw 0
+        color: $c-black
     h3
         font-family: $r-bold
         font-size: get-vw(24px)
@@ -298,6 +311,7 @@ svg
     .p__bold,span
         font-family: $os-bold
         padding-bottom: 2vw
+        color: $c-black
     .p__under-button
         margin-top: 1vw
 #violet-page
@@ -331,6 +345,8 @@ svg
     position: absolute
     bottom: 0
     display: flex
+    p
+        padding: 0
 
 .screen-page_header_man-row_left
     width: 40%
@@ -343,7 +359,7 @@ svg
     align-items: flex-end
     justify-content: center
     //max-width: 20vw
-    padding-left: 25vw
+    padding-left: 21vw
     flex-direction: column
     text-align: right
     img,svg
@@ -378,7 +394,7 @@ svg
     align-items: flex-start
     justify-content: center
     //max-width: 20vw
-    padding-right: 25vw
+    padding-right: 21vw
     flex-direction: column
     text-align: left
     img,svg
@@ -398,6 +414,18 @@ svg
     justify-content: center
     margin: 3vw 15vw
 .screen-page_content_photo-row_column
+    .screen-page_content_photo-row_column_img
+        margin-left: auto
+        margin-right: auto
+        height: get-vw(180px)
+        width: get-vw(270px)
+        overflow: hidden
+        img
+            height: get-vw(180px)
+            width: get-vw(270px)
+            transition: all 0.5s ease-in-out
+            &:hover
+                transform: scale(1.1)
     img
         height: get-vw(180px)
         width: get-vw(270px)
@@ -425,6 +453,7 @@ svg
         font-size: get-vw(24px)
         padding: 0
         margin: 0 0 1vw 0
+        color: $c-black
     .p__bold
         font-family: $r-medium
         font-size: get-vw(21px)
@@ -467,14 +496,19 @@ svg
             .page_puzzle__stroke
                 stroke: #008CF5
             .page_puzzle__image
-                filter: grayscale(0%)
+                //filter: grayscale(0%)
                 opacity: 1
                 cursor: pointer
+                filter: none
     img
         width: get-vw(300px)
     p
         //padding: get-vw(10px) get-vw(35px)
         max-width: 15vw
+.screen-page_content_puzzle-row_column_y
+    flex-basis: 30%
+    p
+        max-width: 20vw
 .page_puzzle__stroke
     fill: none
     stroke: #F0F8FF
@@ -511,15 +545,17 @@ svg
     fill: #f0f8ff
 .page_puzzle__image
     opacity: 0.2
-    filter: grayscale(100%)
+    //filter: grayscale(100%)
+    filter: url('#pictureFilter')
     overflow: visible
     transition: all 0.5s ease-in-out
 .page_puzzle__active
     .page_puzzle__stroke
         stroke: #008CF5
     .page_puzzle__image
-        filter: grayscale(0%)
+        //filter: grayscale(0%)
         opacity: 1
+        filter: none
 
 .screen-page_footer
     width: 100%
@@ -561,9 +597,10 @@ svg
     .p__after-h1
         padding-left: 20vw
         padding-right: 20vw
-    .p__bold,span
+    .p__bold
         font-family: $os-bold
         padding-bottom: 2vw
+        color: $c-black
     .p__under-button
         margin-top: 1vw
 
@@ -618,6 +655,7 @@ svg
     h2
         font-size: get-vw(24px)
         text-align: left
+        color: $c-black
 .sermion-page_header_plashka_right-column_items-container
     display: flex
     flex-direction: column
@@ -689,13 +727,15 @@ svg
     display: flex
     flex-direction: row
     justify-content: space-between
-    margin-bottom: 2vw
+    margin-bottom: 3vw
     align-items: center
     p
         margin: 0
         padding-left: 1vw
         color: $c-white
         font-family: $r-regular
+        span
+            color: $c-white
     img
         width: get-vw(45px)
         height: get-vw(45px)
@@ -939,7 +979,7 @@ svg
                 width: get-vw(75px)
                 height: get-vw(75px)
                 border-radius: 50%
-                //cursor: pointer
+                cursor: default
                 p
                     color: $c-white
                     padding: 0.7vw
@@ -1053,10 +1093,10 @@ svg
     left: 0
     z-index: 5
     background-color: $c-white
-    filter: blur(5px)
+    filter: blur(2px)
     opacity: 0.2
 .sermion-overlay
-    filter: blur(4px)
+    filter: blur(2px)
     //position: fixed
 .disclaimer
     background-color: $c-white
@@ -1067,15 +1107,25 @@ svg
     border-radius: get-vw(10px)
     box-shadow: 0 2px 21px -3px rgb(211, 208, 209)
     width: get-vw(936px)
-    height: get-vw(450px)
+    height: get-vw(530px)
     margin: 5vw auto
     position: absolute
-    top: 20vh
+    top: 17vh
     left: 50%
     transform: translateX(-50%)
     //z-index: 6
     display: none
-    filter: blur(0px)
+    opacity: 0
+    //&:before
+        content: ""
+        position: fixed
+        cursor: none
+        background-color: #ffbe1d
+        width: 15vw
+        height: 15vw
+        top: -40%
+        left: -50%
+        z-index: 100
 .disclaimer_top-row
     width: 100%
     height: 55%
@@ -1083,13 +1133,13 @@ svg
     p
         font-family: $r-medium
         font-size: get-vw(18px)
-        margin-bottom: 0.5vw
+        margin-bottom: 2vw
     h2
         font-family: $r-bold
         font-size: get-vw(28px)
         color: $c-blue
         -webkit-font-smoothing: subpixel-antialiased
-        margin-bottom: 1vw
+        margin-bottom: 2vw
         padding: 0 3vw
     .disclaimer_top-row_buttons-container
         display: flex
@@ -1103,13 +1153,15 @@ svg
 .disclaimer_bottom-row
     width: 100%
     height: 45%
-    overflow: scroll
+    overflow-y: scroll
+    overflow-x: hidden
     background-color: #f2f2f2
     padding: 2vw
     h5
         font-family: $os-bold
         font-size: get-vw(18px)
         margin-bottom: 1vw
+        color: $c-black
     ul
         text-align: left
         font-family: $r-regular
@@ -1119,7 +1171,7 @@ svg
         padding-bottom: 0.5vw
         &:first-child
             font-family: $r-bold
-.blured
-    filter: blur(5px)
+            color: $c-black
+
 
 @import "media"
