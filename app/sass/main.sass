@@ -40,6 +40,7 @@ body
     outline: none
     background-color: #ffffff
     -webkit-font-smoothing: subpixel-antialiased
+    overflow-x: hidden
     p, h1, h2, h3, h4, h5, span, ul, li, tr, td, q
         padding: 0
         margin: 0
@@ -185,13 +186,19 @@ svg
         left: 62%
         transform: rotate(-10deg)
 
+.proyasnit
+    width: 15.45833vw
+    height: 3.70833vw
+    line-height: 3.70833vw
+    font-size: 1.1vw
+    text-transform: uppercase
 .button
     font-family: $r-bold
     color: $c-white
     background-color: $c-blue
     width: get-vw(220px)
     height: get-vw(52px)
-    border-radius: 26px
+    border-radius: get-vw(40px)
     line-height: get-vw(52px)
     font-size: get-vw(18px)
     border: none
@@ -498,7 +505,7 @@ svg
             .page_puzzle__image
                 //filter: grayscale(0%)
                 opacity: 1
-                cursor: pointer
+                //cursor: pointer
                 filter: none
     img
         width: get-vw(300px)
@@ -723,6 +730,31 @@ svg
         width: 100%
         height: get-vw(50px)
         background-color: #fff
+.parallax-mirror
+    &:before
+        content: ''
+        position: absolute
+        left: 0
+        top: -18.60417vw
+        width: 100%
+        height: 18.60417vw
+        background-color: $c-white
+        font-family: $r-bold
+        font-size: get-vw(28px)
+        text-transform: uppercase
+        //margin: 1vw 0
+        color: $c-blue
+        text-align: center
+        z-index: 100
+    &:after
+        content: ''
+        position: absolute
+        left: 0
+        bottom: -23.60417vw
+        width: 100%
+        height: 25.60417vw
+        background-color: $c-white
+        z-index: 100
 .parallax_text
     display: flex
     flex-direction: row
@@ -1059,6 +1091,7 @@ svg
     .button
         margin: 1vw 2vw 0 2vw
 .sermion-page_content
+    padding-bottom: 3vw
     svg
         width: get-vw(114px)
         height: auto

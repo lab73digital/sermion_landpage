@@ -349,7 +349,7 @@ $(document).ready(function () {
     $('.confirm').on('click', function () {
         disclaimerShowed = true;
         $('.parallax-mirror').css('display', 'block');
-        $('svg').css('pointer-events', 'auto');
+        $('.head-svg').css('pointer-events', 'auto');
         TweenMax.from('.parallax-mirror', .5, {
 
             delay: 2,
@@ -357,7 +357,7 @@ $(document).ready(function () {
         });
         $('.parallax').parallax({
             imageSrc: 'img/doc-parallax/inside-bg.jpg',
-            speed: 0.8
+            speed: 0.4
         });
         $('.disclaimer').hide('slow');
         $("body").css("overflow", "auto");
@@ -470,45 +470,56 @@ $(document).ready(function () {
         //$('.drop-shadow_here').addClass('shadow-puzzles');
 
 
-        var puzzleTweenKilled = false;
+        var puzzleTweenKilledRed = false;
+        var puzzleTweenKilledBlue = false;
+        var puzzleTweenKilledViolet = false;
+        var puzzleTweenKilledYellow = false;
         $('#red-2').on('click', function () {
             puzzleTweenRed.kill();
-            puzzleTweenKilled = true;
+            puzzleTweenKilledRed = true;
         }).on('mouseenter', function () {
             puzzleTweenRed.paused(true);
         }).on('mouseleave', function () {
-            if (!puzzleTweenKilled) {
-                puzzleTweenRed.paused(false);
+            if (!puzzleTweenKilledRed) {
+                if (!$('.sermion-page:visible').length) {
+                    puzzleTweenRed.paused(false);
+                }
             }
         });
         $('#violet-1').on('click', function () {
             puzzleTweenViolet.kill();
-            puzzleTweenKilled = true;
+            puzzleTweenKilledViolet = true;
         }).on('mouseenter', function () {
             puzzleTweenViolet.paused(true);
         }).on('mouseleave', function () {
-            if (!puzzleTweenKilled) {
-                puzzleTweenViolet.paused(false);
+            if (!puzzleTweenKilledViolet) {
+                if (!$('.sermion-page:visible').length) {
+                    puzzleTweenViolet.paused(false);
+                }
             }
         });
         $('#blue-4').on('click', function () {
             puzzleTweenBlue.kill();
-            puzzleTweenKilled = true;
+            puzzleTweenKilledBlue = true;
         }).on('mouseenter', function () {
             puzzleTweenBlue.paused(true);
         }).on('mouseleave', function () {
-            if (!puzzleTweenKilled) {
-                puzzleTweenBlue.paused(false);
+            if (!puzzleTweenKilledBlue) {
+                if (!$('.sermion-page:visible').length) {
+                    puzzleTweenBlue.paused(false);
+                }
             }
         });
         $('#yelloow-3').on('click', function () {
             puzzleTweenYellow.kill();
-            puzzleTweenKilled = true;
+            puzzleTweenKilledYellow = true;
         }).on('mouseenter', function () {
             puzzleTweenYellow.paused(true);
         }).on('mouseleave', function () {
-            if (!puzzleTweenKilled) {
-                puzzleTweenYellow.paused(false);
+            if (!puzzleTweenKilledYellow) {
+                if (!$('.sermion-page:visible').length) {
+                    puzzleTweenYellow.paused(false);
+                }
             }
         });
     }
@@ -532,7 +543,8 @@ $(document).ready(function () {
     var scrolledToBottom = false;
 
     function scrollHead() {
-        $('svg').css('pointer-events', 'none');
+        $('.head-svg').css('pointer-events', 'none');
+        console.log('pointer-events nooooooone');
         $(window).on('scroll', function () {
             if (scrolledToBottom) {
                 //scrolledToBottom = false;
@@ -592,7 +604,7 @@ $(document).ready(function () {
                                     opacity: 1,
                                     display: 'block',
                                     onComplete: function () {
-                                        $('svg').css('pointer-events', 'auto');
+                                        $('.head-svg').css('pointer-events', 'auto');
                                         headPuzzleCheck();
                                     }
                                 });
@@ -608,9 +620,9 @@ $(document).ready(function () {
                         });
                     TweenMax.set('.head_puzzle--checked',
                         {
-                            y: -800 + headPosTop * 800,
+                            y: -700 + headPosTop * 700,
                             onComplete: function () {
-                                //$('svg').css('pointer-events', 'auto');
+                                //$('.head-svg').css('pointer-events', 'auto');
                             }
                         });
                 }
@@ -626,129 +638,143 @@ $(document).ready(function () {
                         top: 20 + (headPosTopSer * 50) + '%',
                         left: headSvgLeftSer,
                         onComplete: function () {
-                            //$('svg').css('pointer-events', 'auto');
+                            //$('.head-svg').css('pointer-events', 'auto');
                         }
                     });
             }
         });
     }
 
-    scrollHead();
+    //scrollHead();
 
+    var clickCatched = false;
 
     function headPuzzleFistCheck() {
         $('.head_puzzle--click').on('click', function () {
-            if (!$('.head_puzzle--pasted').length) {
-                var goto = $(this).data('goto-page');
-                //$('.page_puzzle__active').removeClass('page_puzzle__active');
-                pagePuzzlesSwitcher(goto);
-                TweenMax.to('.screen-1', 1,
-                    {
-                        ease: Power1.easeInOut,
-                        opacity: 0,
-                        display: 'none',
-                        onComplete: function () {
-                            new TimelineMax().set(goto,
-                                {display: 'block'}).fromTo(goto, 1,
-                                {ease: Power1.easeInOut, opacity: 0, y: $(window).height() + 'px'},
-                                {ease: Power1.easeInOut, opacity: 1, y: 0}).from($('.animation_screen-page_1:visible'), 0.6,
-                                {
-                                    ease: Power1.easeInOut,
-                                    opacity: 0
-                                }).from($('.animation_screen-page_2:visible'), 0.6,
-                                {
-                                    ease: Power1.easeInOut,
-                                    opacity: 0
-                                }).from($('.animation_screen-page_3:visible'), 0.6,
-                                {
-                                    ease: Power1.easeInOut,
-                                    opacity: 0
-                                }).from($('.animation_screen-page_4:visible'), 0.6,
-                                {
-                                    ease: Power1.easeInOut,
-                                    opacity: 0
-                                }).staggerFrom($('.animation_screen-page_5:visible'), 0.9,
-                                {
-                                    ease: Power1.easeInOut,
-                                    opacity: 0,
-                                    y: -30
-                                }, 0.3);
-                            var tweenScreenPage1 = new TimelineMax().from($('.animation_screen-page_6:visible'), 0.6,
-                                {
-                                    ease: Power1.easeInOut,
-                                    opacity: 0
-                                }).staggerFrom($('.animation_screen-page_7:visible'), 0.9,
-                                {
-                                    ease: Power1.easeInOut,
-                                    opacity: 0
-                                }, 0.3);
-                            var tweenScreenPage2 = new TimelineMax().from($('.animation_screen-page_8:visible'), 0.6,
-                                {
-                                    ease: Power1.easeInOut,
-                                    opacity: 0
-                                }).from($('.animation_screen-page_9:visible'), 0.6,
-                                {
-                                    ease: Power1.easeInOut,
-                                    opacity: 0
-                                }).from($('.animation_screen-page_10:visible'), 0.6,
-                                {
-                                    ease: Power1.easeInOut,
-                                    opacity: 0
-                                }).staggerFrom($('.animation_screen-page_11:visible'), 0.9,
-                                {
-                                    ease: Power1.easeInOut,
-                                    opacity: 0,
-                                    y: -30
-                                }, 0.3).from($('.animation_screen-page_12:visible'), 0.6,
-                                {
-                                    opacity: 0
-                                });
-                            new ScrollMagic.Scene({
-                                triggerElement: $('.animation_screen-page_6:visible'),
-                                reverse: false
-                            }).setTween(tweenScreenPage1).addTo(controller);
-                            new ScrollMagic.Scene({
-                                triggerElement: $('.animation_screen-page_8:visible'),
-                                reverse: false
-                            }).setTween(tweenScreenPage2).addTo(controller);
-                        }
-                    });
-                $(this).removeClass('head_puzzle--unchecked').addClass('head_puzzle--checked')
-                    .find('.puzzle_text').css('display', 'none');
-                TweenMax.to('.head_puzzle--unchecked', 0.5,
-                    {
-                        ease: Power1.easeInOut,
-                        opacity: 0,
-                        display: 'none',
-                        onComplete: function () {
-                            TweenMax.to('.head-svg', 1,
-                                {
-                                    ease: Power1.easeInOut,
-                                    left: ('7vw'),
-                                    //top: 400 + 'px',
-                                    height: ('10vw'),
-                                    position: 'fixed'
-                                });
-                            TweenMax.to('.head_puzzle--checked', 1,
-                                {
-                                    ease: Power1.easeInOut,
-                                    x: 0,
-                                    y: -800,
-                                    rotation: 360
-                                });
-                        }
-                    });
-            } else {
-                headPuzzleCheck()
+            if (!clickCatched) {
+                if (!$('.head_puzzle--pasted').length) {
+                    clickCatched = true;
+                    var goto = $(this).data('goto-page');
+                    //$('.page_puzzle__active').removeClass('page_puzzle__active');
+                    pagePuzzlesSwitcher(goto);
+                    TweenMax.to('.screen-1', 1,
+                        {
+                            ease: Power1.easeInOut,
+                            opacity: 0,
+                            display: 'none',
+                            onComplete: function () {
+                                scrollHead();
+                                new TimelineMax().set(goto,
+                                    {display: 'block'}).fromTo(goto, 1,
+                                    {ease: Power1.easeInOut, opacity: 0, y: $(window).height() + 'px'},
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 1,
+                                        y: 0
+                                    }).from($('.animation_screen-page_1:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_2:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_3:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_4:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).staggerFrom($('.animation_screen-page_5:visible'), 0.9,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0,
+                                        y: -30
+                                    }, 0.3);
+                                var tweenScreenPage1 = new TimelineMax().from($('.animation_screen-page_6:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).staggerFrom($('.animation_screen-page_7:visible'), 0.9,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }, 0.3);
+                                var tweenScreenPage2 = new TimelineMax().from($('.animation_screen-page_8:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_9:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_10:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).staggerFrom($('.animation_screen-page_11:visible'), 0.9,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0,
+                                        y: -30
+                                    }, 0.3).from($('.animation_screen-page_12:visible'), 0.6,
+                                    {
+                                        opacity: 0,
+                                        onComplete: function () {
+                                            $('.screen-page:visible').find('[class*="animation"]').removeClass('[class*="animation"]');
+                                        }
+                                    });
+                                new ScrollMagic.Scene({
+                                    triggerElement: $('.animation_screen-page_6:visible'),
+                                    reverse: false
+                                }).setTween(tweenScreenPage1).addTo(controller);
+                                new ScrollMagic.Scene({
+                                    triggerElement: $('.animation_screen-page_8:visible'),
+                                    reverse: false
+                                }).setTween(tweenScreenPage2).addTo(controller);
+                            }
+                        });
+                    $(this).removeClass('head_puzzle--unchecked').addClass('head_puzzle--checked')
+                        .find('.puzzle_text').css('display', 'none');
+                    TweenMax.to('.head_puzzle--unchecked', 0.5,
+                        {
+                            ease: Power1.easeInOut,
+                            opacity: 0,
+                            display: 'none',
+                            onComplete: function () {
+                                TweenMax.to('.head-svg', 1,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        left: ('7vw'),
+                                        //top: 400 + 'px',
+                                        height: ('10vw'),
+                                        position: 'fixed'
+                                    });
+                                TweenMax.to('.head_puzzle--checked', 1,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        x: 0,
+                                        y: -700,
+                                        rotation: 360
+                                    });
+                            }
+                        });
+                } else {
+                    headPuzzleCheck()
+                }
             }
         })
     }
 
+    var clickCatched2 = false;
     function headPuzzleCheck() {
         $('.head_puzzle--click').on('click', function () {
             $('.head-svg').css('width', '100%');
             //if (!$(this).hasClass('head_puzzle--pasted')) {
-            if (true) {
+            if (!clickCatched2) {
+                clickCatched2 = true;
                 $(this).removeClass('head_puzzle--unchecked').addClass('head_puzzle--checked')
                     .find('.puzzle_text').css('display', 'none');
                 new TimelineMax().to('.puzzle_text_good', .5,
@@ -781,7 +807,7 @@ $(document).ready(function () {
                             TweenMax.to('.head_puzzle--checked', .9,
                                 {
                                     x: 0,
-                                    y: -800,
+                                    y: -700,
                                     rotation: 360
                                 });
                         }
@@ -855,7 +881,11 @@ $(document).ready(function () {
                                         y: -30
                                     }, 0.3).from($('.animation_screen-page_12:visible'), 0.6,
                                     {
-                                        opacity: 0
+                                        opacity: 0,
+                                        onComplete: function () {
+                                            $('.screen-page:visible').find('[class*="animation"]').removeClass('[class*="animation"]');
+                                            clickCatched2 = false;
+                                        }
                                     });
                                 new ScrollMagic.Scene({
                                     triggerElement: $('.animation_screen-page_6:visible'),
@@ -928,7 +958,7 @@ $(document).ready(function () {
                             TweenMax.to('.head_puzzle--checked', .9,
                                 {
                                     x: 0,
-                                    y: -800,
+                                    y: -700,
                                     rotation: 360
                                 });
                         }
