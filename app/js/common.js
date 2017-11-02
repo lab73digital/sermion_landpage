@@ -142,6 +142,7 @@ $(document).ready(function () {
         headPuzzleGatherAll();
         if (!disclaimerShowed) {
             $("body").css("overflow", "hidden");
+            $(".disclaimer_overlay").css("visibility", "visible");
             new TimelineMax().set('.disclaimer', {
                 display: 'block'
             }).fromTo('.disclaimer', .7, {
@@ -359,7 +360,8 @@ $(document).ready(function () {
             imageSrc: 'img/doc-parallax/inside-bg.jpg',
             speed: 0.4
         });
-        $('.disclaimer').hide('slow');
+        $(".disclaimer_overlay").css("visibility", "hidden");
+        $('.disclaimer').hide();
         $("body").css("overflow", "auto");
         $('.sermion-page').removeClass('sermion-overlay');
     });
