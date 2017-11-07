@@ -23,8 +23,28 @@
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 767px)
- /**/
-
+    .screen-1_for-desktop
+        display: none
+    .screen-1_for-mobile
+        display: block
+    .screen-1_content-container h1
+        font-size: get-vw(72px)
+    .screen-1_visible, .screen-1_hidden, .screen-1_content-container .screen-1_content-container_bottom p
+        font-size: get-vw(36px)
+    .screen-1_side-quotes
+        display: none
+    .button_screen1_edited
+        width: 21vw
+        height: 5vw
+        line-height: 5vw
+        margin-top: 0.5vw
+        border-radius: get-vw(50px)
+    .head-svg, .screen-11_pointer
+        display: none
+    .head-svg-2
+        display: block
+    [class^=puzzle_text]
+        display: none
 /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px)
 	/**/

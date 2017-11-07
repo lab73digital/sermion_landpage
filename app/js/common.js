@@ -346,6 +346,7 @@ $(document).ready(function () {
         $('.head-svg').addClass('head-opened');
         $('.drop-shadow_here').addClass('shadow-puzzles');
         PuzzleExplode();
+        PuzzleExplode2();
         headPuzzleFistCheck();
 
 
@@ -531,6 +532,69 @@ $(document).ready(function () {
                     puzzleTweenYellow.paused(false);
                 }
             }
+        });
+    }
+
+    function PuzzleExplode2() {
+
+            var puzzleTweenViolet2 = new TimelineMax().fromTo('#violet-1_2', 0.7,
+                {
+                    ease: Power4.easeInOut,
+                    x: 0,
+                    y: 0,
+                    //rotation: 0
+                }, {
+                    ease: Power1.easeInOut,
+                    x: -30,
+                    y: -20,
+                    //rotation: -25
+                });
+
+            var puzzleTweenRed2 = new TimelineMax().fromTo('#red-2_2', 0.7,
+                {
+                    ease: Power4.easeInOut,
+                    x: 0,
+                    y: 0,
+                    //rotation: 0
+                }, {
+                    ease: Power1.easeInOut,
+                    x: -20,
+                    y: 20,
+                    //rotation: -35
+                });
+
+
+            var puzzleTweenYellow2 = new TimelineMax().fromTo('#yelloow-3_2', 0.7, {
+                    ease: Power4.easeInOut,
+                    x: 0,
+                    y: 0,
+                    //rotation: 0
+                },
+                {
+                    ease: Power1.easeInOut,
+                    x: 20,
+                    y: -20,
+                    //rotation: -20
+                });
+
+
+            var puzzleTweenBlue2 = new TimelineMax().fromTo('#blue-4_2', 0.7, {
+                    ease: Power4.easeInOut,
+                    x: 0,
+                    y: 0,
+                    //rotation: 0
+                },
+                {
+                    ease: Power1.easeInOut,
+                    x: 30,
+                    y: 20,
+                    //rotation: 15
+                });
+
+        TweenMax.to('.puzzle_text_2', .5, {
+            fill: '#615f5f',
+            opacity: 1,
+            delay: 0.8
         });
     }
 
