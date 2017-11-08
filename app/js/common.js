@@ -164,7 +164,7 @@ $(document).ready(function () {
 
                 $('.head-svg').css('width', 'auto');
                 scrolledToBottom = false;
-
+                new TimelineMax().to('.head-svg-2', 0.7, {autoAlpha:0});
                 new TimelineMax().to('.screen-page:visible', 0.5, {
                     opacity: 0,
                     display: 'none',
@@ -340,6 +340,7 @@ $(document).ready(function () {
                 $('.screen-1_hidden').toggleClass('show');
                 TweenMax.from('.screen-1_hidden', 0.7, {opacity: 0});
                 $('svg').css('pointer-events', 'auto');
+                $('.head-svg-2--click').css('cursor','pointer')
             }
         });
 
@@ -348,6 +349,7 @@ $(document).ready(function () {
         PuzzleExplode();
         PuzzleExplode2();
         headPuzzleFistCheck();
+        headPuzzleFistCheckMobile();
 
 
     });
@@ -537,7 +539,7 @@ $(document).ready(function () {
 
     function PuzzleExplode2() {
 
-            var puzzleTweenViolet2 = new TimelineMax().fromTo('#violet-1_2', 0.7,
+            var puzzleTweenViolet2 = new TimelineMax().fromTo('#violet-1_2', 0.4,
                 {
                     ease: Power4.easeInOut,
                     x: 0,
@@ -545,12 +547,12 @@ $(document).ready(function () {
                     //rotation: 0
                 }, {
                     ease: Power1.easeInOut,
-                    x: -30,
-                    y: -20,
+                    x: -70,
+                    y: -40,
                     //rotation: -25
                 });
 
-            var puzzleTweenRed2 = new TimelineMax().fromTo('#red-2_2', 0.7,
+            var puzzleTweenRed2 = new TimelineMax().fromTo('#red-2_2', 0.4,
                 {
                     ease: Power4.easeInOut,
                     x: 0,
@@ -558,13 +560,13 @@ $(document).ready(function () {
                     //rotation: 0
                 }, {
                     ease: Power1.easeInOut,
-                    x: -20,
+                    x: -70,
                     y: 20,
                     //rotation: -35
                 });
 
 
-            var puzzleTweenYellow2 = new TimelineMax().fromTo('#yelloow-3_2', 0.7, {
+            var puzzleTweenYellow2 = new TimelineMax().fromTo('#yelloow-3_2', 0.4, {
                     ease: Power4.easeInOut,
                     x: 0,
                     y: 0,
@@ -572,13 +574,13 @@ $(document).ready(function () {
                 },
                 {
                     ease: Power1.easeInOut,
-                    x: 20,
-                    y: -20,
+                    x: 40,
+                    y: -40,
                     //rotation: -20
                 });
 
 
-            var puzzleTweenBlue2 = new TimelineMax().fromTo('#blue-4_2', 0.7, {
+            var puzzleTweenBlue2 = new TimelineMax().fromTo('#blue-4_2', 0.4, {
                     ease: Power4.easeInOut,
                     x: 0,
                     y: 0,
@@ -586,11 +588,11 @@ $(document).ready(function () {
                 },
                 {
                     ease: Power1.easeInOut,
-                    x: 30,
+                    x: 50,
                     y: 20,
                     //rotation: 15
                 });
-
+        TweenMax.set('.puzzle_text_2', {display:'block',opacity:0});
         TweenMax.to('.puzzle_text_2', .5, {
             fill: '#615f5f',
             opacity: 1,
@@ -1160,6 +1162,242 @@ $(document).ready(function () {
                 }
             });
     }
+
+    var clickCatchedMobile = false;
+    function headPuzzleFistCheckMobile() {
+        $('.head-svg-2--click').on('click', function () {
+            if (!clickCatchedMobile) {
+                if (!$('.head-svg-2--checked').length) {
+                    clickCatchedMobile = true;
+                    var goto = $(this).data('goto-page');
+                    //$('.page_puzzle__active').removeClass('page_puzzle__active');
+                    //pagePuzzlesSwitcher(goto);
+                    new TimelineMax().to('.head-svg-2', 0.7, {autoAlpha:0})
+                        .set('.head-svg-2', {position:'absolute', top:"93%", height: '25vh'})
+                        .set('.head-bg-2', {fill: 'none', stroke:'none'})
+                        .to('.head-svg-2', 0.7, {autoAlpha:1, delay: 2});
+                    TweenMax.to('.screen-1', 1,
+                        {
+                            ease: Power1.easeInOut,
+                            opacity: 0,
+                            display: 'none',
+                            onComplete: function () {
+                                //scrollHead();
+                                new TimelineMax().set(goto,
+                                    {display: 'block'}).fromTo(goto, 1,
+                                    {ease: Power1.easeInOut, opacity: 0, y: $(window).height() + 'px'},
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 1,
+                                        y: 0
+                                    }).from($('.animation_screen-page_1:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_2:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_3:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_4:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).staggerFrom($('.animation_screen-page_5:visible'), 0.9,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0,
+                                        y: -30
+                                    }, 0.3);
+                                var tweenScreenPage1 = new TimelineMax().from($('.animation_screen-page_6:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).staggerFrom($('.animation_screen-page_7:visible'), 0.9,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }, 0.3);
+                                var tweenScreenPage2 = new TimelineMax().from($('.animation_screen-page_8:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_9:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_10:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).staggerFrom($('.animation_screen-page_11:visible'), 0.9,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0,
+                                        y: -30
+                                    }, 0.3).from($('.animation_screen-page_12:visible'), 0.6,
+                                    {
+                                        opacity: 0,
+                                        onComplete: function () {
+                                            $('.screen-page:visible').find('[class*="animation"]').removeClass('[class*="animation"]');
+                                        }
+                                    });
+                                new ScrollMagic.Scene({
+                                    triggerElement: $('.animation_screen-page_6:visible'),
+                                    reverse: false
+                                }).setTween(tweenScreenPage1).addTo(controller);
+                                new ScrollMagic.Scene({
+                                    triggerElement: $('.animation_screen-page_8:visible'),
+                                    reverse: false
+                                }).setTween(tweenScreenPage2).addTo(controller);
+                            }
+                        });
+                    $(this).removeClass('head-svg-2--unchecked').addClass('head-svg-2--checked');
+                    new TimelineMax().set($(this).find('.puzzle_image_bad_2'),
+                        {
+                            opacity: 0, display: 'none', delay:1
+                        }).set($(this).find('.puzzle_image_good_2'),
+                        {
+                            opacity: 1, display: 'inline'
+                        }).set($(this).find('.puzzle_text_2'),
+                        {
+                            opacity: 0, display: 'none'
+                        }).set($(this).find('.puzzle_text_good_2'),
+                        {
+                            display: 'inline',
+                            opacity: 1,
+                            onComplete: function () {
+                                $('.head-svg-2--click').find('.puzzle_text_2').addClass('puzzle_text--big');
+                                $('.red-2_2').find('.puzzle_text_2').css('transform','translateX(-19vw)');
+                                $('.red-2_2').find('.puzzle_text_good_2').css('transform','translateX(-25vw)');
+                                $('.violet-1_2').find('.puzzle_text_2').css('transform','translateX(-25vw)');
+                                $('.violet-1_2').find('.puzzle_text_good_2').css('transform','translateX(-20vw)');
+                                $('.head-svg-2--click').find('.puzzle_text_good_2').addClass('puzzle_text--big');
+                                scrollHeadAnimFinished = true;
+                                clickCatchedMobile = false;
+                                headPuzzleFistCheckMobile();
+                            }
+                        });
+                } else {
+                    var goto = $(this).data('goto-page');
+                    //$('.page_puzzle__active').removeClass('page_puzzle__active');
+                    //pagePuzzlesSwitcher(goto);
+
+                    TweenMax.to('.screen-page:visible', 1,
+                        {
+                            ease: Power1.easeInOut,
+                            opacity: 0,
+                            display: 'none',
+                            onComplete: function () {
+                                $(window).scrollTop(0);
+                                new TimelineMax().set(goto,
+                                    {display: 'block'}).fromTo(goto, 1,
+                                    {ease: Power1.easeInOut, opacity: 0, y: $(window).height() + 'px'},
+                                    {
+                                        ease: Power1.easeInOut, opacity: 1, y: 0, onComplete: function () {
+                                        scrollHead();
+                                        scrolledToBottom = false;
+                                    }
+                                    }).from($('.animation_screen-page_1:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_2:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_3:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_4:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).staggerFrom($('.animation_screen-page_5:visible'), 0.9,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0,
+                                        y: -30
+                                    }, 0.3);
+                                var tweenScreenPage1 = new TimelineMax().from($('.animation_screen-page_6:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).staggerFrom($('.animation_screen-page_7:visible'), 0.9,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }, 0.3);
+                                var tweenScreenPage2 = new TimelineMax().from($('.animation_screen-page_8:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_9:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_10:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).staggerFrom($('.animation_screen-page_11:visible'), 0.9,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0,
+                                        y: -30
+                                    }, 0.3).from($('.animation_screen-page_12:visible'), 0.6,
+                                    {
+                                        opacity: 0,
+                                        onComplete: function () {
+                                            $('.screen-page:visible').find('[class*="animation"]').removeClass('[class*="animation"]');
+                                            clickCatched2 = false;
+                                        }
+                                    });
+                                new ScrollMagic.Scene({
+                                    triggerElement: $('.animation_screen-page_6:visible'),
+                                    reverse: false
+                                }).setTween(tweenScreenPage1).addTo(controller);
+                                new ScrollMagic.Scene({
+                                    triggerElement: $('.animation_screen-page_8:visible'),
+                                    reverse: false
+                                }).setTween(tweenScreenPage2).addTo(controller);
+                            }
+                        });
+                    $(this).removeClass('head-svg-2--unchecked').addClass('head-svg-2--checked');
+                    new TimelineMax().to($('head-svg-2'), 0.3,
+                        {
+                            opacity: 0
+                        }).set($(this).find('.puzzle_image_bad_2'),
+                        {
+                            opacity: 0, display: 'none', delay:1
+                        }).set($(this).find('.puzzle_image_good_2'),
+                        {
+                            opacity: 1, display: 'inline'
+                        }).set($(this).find('.puzzle_text_2'),
+                        {
+                            opacity: 0, display: 'none'
+                        }).set($('head-svg-2'),
+                        {
+                            opacity: 1
+                        }).set($(this).find('.puzzle_text_good_2'),
+                        {
+                            display: 'inline',
+                            opacity: 1,
+                            onComplete: function () {
+                                scrollHeadAnimFinished = true;
+                                clickCatchedMobile = false;
+                                headPuzzleFistCheckMobile();
+                            }
+                        });
+                }
+            }
+        })
+    }
+
 
 });
 

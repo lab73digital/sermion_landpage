@@ -153,6 +153,20 @@ svg
     display: none
     //width: 5vw
     cursor: auto
+.puzzle_text_good_2
+    font-family: $os-bold
+    font-size: get-vw(68px)
+    text-transform: uppercase
+    user-select: none
+    opacity: 0
+    display: none
+.puzzle_text_2
+    font-family: $os-bold
+    font-size: get-vw(88px)
+    text-transform: uppercase
+    fill: none
+    user-select: none
+    opacity: 0
 .shadow-puzzles
     filter: url(#f1)
     //text
@@ -186,12 +200,18 @@ svg
         left: 62%
         transform: rotate(-10deg)
 
-.proyasnit
-    width: 15.45833vw
-    height: 3.70833vw
-    line-height: 3.70833vw
-    font-size: 1.1vw
-    text-transform: uppercase
+div
+    .proyasnit
+        //width: 15.45833vw
+        //height: 3.70833vw
+        //line-height: 3.70833vw
+        //font-size: 1.1vw
+        text-transform: uppercase
+        width: 15.4583vw
+        height: 3.70833vw
+        line-height: 3.70833vw
+        font-size: 1.1vw
+        opacity: 1
 .button
     font-family: $r-bold
     color: $c-white
@@ -1229,7 +1249,7 @@ svg
     margin: 0
     top: 50vh
     left: 50%
-    transform: translate3d(-50%,-50%, .1px)
+    transform: translate(-50%,-50%)
 @import "media"
 
 @media all and (-ms-high-contrast: none)
