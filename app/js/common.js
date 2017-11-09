@@ -94,6 +94,29 @@ $(document).ready(function () {
     //     speed: 0.8
     // });
 
+    var menuOpened = false;
+    $('.menu_burger').on('click', function () {
+    if (!menuOpened) {
+        TweenMax.to('.menu', 0.3, {transform: 'translateX(0%)'});
+        menuOpened = true;
+        $('.menu_burger').addClass('close_menu_burger');
+        $('.menu_burger_line').addClass('close_menu_line');
+    } else {
+        TweenMax.to('.menu', 0.3, {x: '100%'});
+        menuOpened = false;
+        $('.menu_burger').removeClass('close_menu_burger');
+        $('.menu_burger_line').removeClass('close_menu_line');
+    }
+    });
+
+    // $('.menu').on('mouseleave', function () {
+    //     if (menuOpened) {
+    //         TweenMax.to('.menu', 0.3, {x: '100%'});
+    //         menuOpened = false;
+    //     }
+    // });
+
+
     var controller = new ScrollMagic.Controller();
 
     var tweenScreen1 = new TimelineMax().to('.screen-1', .5,

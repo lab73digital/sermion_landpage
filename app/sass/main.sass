@@ -1250,6 +1250,93 @@ div
     top: 50vh
     left: 50%
     transform: translate(-50%,-50%)
+
+.menu
+    position: fixed
+    top: 0
+    right: 0
+    height: 100%
+    width: 25vw
+    background-color: #fbfbfd
+    z-index: 200
+    box-shadow: -1px 0px 14px -1px rgba(0,0,0,0.15)
+    padding-top: 20vh
+    transform: translateX(100%)
+    span
+        position: absolute
+        top: 2.3vw
+        left: 0
+        font-family: $os-light
+        font-size: 3vw
+        color: #36a3fe
+        text-align: left
+        padding-left: 3vw
+.menu_burger
+    position: fixed
+    top: 2vw
+    right: 2vw
+    width: get-vw(86px)
+    height: get-vw(86px)
+    border: solid 2px #e0edfd
+    border-radius: 50%
+    //display: flex
+    justify-content: space-around
+    flex-direction: column
+    align-items: center
+    padding: 1vw 0
+    z-index: 300
+    cursor: pointer
+    background-color: #fbfbfd
+    transition: all 0.5s ease-in-out
+    display: none
+.menu_burger_line
+    height: get-vw(3px)
+    width: get-vw(37px)
+    background-color: #36a3fe
+    border-radius: get-vw(55px)
+    transition: all 0.5s ease-in-out
+.close_menu_burger
+    justify-content: center
+.close_menu_line
+    &:first-child
+        transform: rotate(45deg)
+        transform-origin: 50% 50%
+    &:last-child
+        transform: translateY(-0.16vw) rotate(-45deg)
+        transform-origin: 50% 50%
+    &:nth-child(2)
+        display: none
+
+.menu_point
+    margin-bottom: 4vw
+    font-size: get-vw(36px)
+    font-family: $r-medium
+    text-align: left
+    padding-left: 3vw
+    cursor: pointer
+    &:hover
+        color: $c-black
+.menu_button
+    font-family: $r-medium
+    color: $c-white
+    background-color: $c-blue
+    width: get-vw(370px)
+    height: get-vw(86px)
+    border-radius: get-vw(40px)
+    line-height: get-vw(86px)
+    font-size: get-vw(36px)
+    border: none
+    display: inline-block
+    user-select: none
+    //margin: 0
+    box-shadow: 0 2px 12px -3px rgba(16,207,232,1)
+    transition: all 0.4s ease-in-out
+    cursor: pointer
+    &:hover
+        background-color: #63b9ff
+        transform: translateY(-2px)
+
+
 @import "media"
 
 @media all and (-ms-high-contrast: none)
