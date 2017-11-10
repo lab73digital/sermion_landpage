@@ -108,8 +108,8 @@ $(document).ready(function () {
         orientationChanger();
     }, false);
 } else {
-    document.querySelector('.screen-1').style.display = 'block';
-    document.querySelector('.head-svg-2').style.opacity = '0';
+    document.querySelector('.content_of_the_site').style.display = 'block';
+    //document.querySelector('.head-svg-2').style.opacity = '1';
 }
 
     var menuOpened = false;
@@ -2010,8 +2010,8 @@ $(document).ready(function () {
                 screenApply = true;
             }
             if (screenApply) {
-                document.querySelector('.screen-1').style.display = 'none';
-                document.querySelector('.head-svg-2').style.opacity = '0';
+                document.querySelector('.content_of_the_site').style.display = 'none';
+                //document.querySelector('.head-svg-2').style.opacity = '0';
                 if (screenHeight >= 568) {
                     document.querySelector('.rotate-block').style.display = 'block';
                 } else {
@@ -2019,23 +2019,23 @@ $(document).ready(function () {
                 }
             } else {
                 document.querySelector('.rotate-block').style.display = 'none';
-                document.querySelector('.screen-1').style.display = 'block';
-                document.querySelector('.head-svg-2').style.opacity = '1';
+                document.querySelector('.content_of_the_site').style.display = 'block';
+                //document.querySelector('.head-svg-2').style.opacity = '1';
             }
         } else {
             screenApply = screenWidth < screenHeight;
             if (screenApply) {
                 if (screenHeight >= 568) {
-                    document.querySelector('.screen-1').style.display = 'none';
-                    document.querySelector('.head-svg-2').style.opacity = '0';
+                    document.querySelector('.content_of_the_site').style.display = 'none';
+                    //document.querySelector('.head-svg-2').style.opacity = '0';
                     document.querySelector('.rotate-block').style.display = 'block';
                 } else {
                     document.querySelector('.default-block').style.display = 'block';
                 }
             } else {
                 document.querySelector('.rotate-block').style.display = 'none';
-                document.querySelector('.screen-1').style.display = 'block';
-                document.querySelector('.head-svg-2').style.opacity = '1';
+                document.querySelector('.content_of_the_site').style.display = 'block';
+                //document.querySelector('.head-svg-2').style.opacity = '1';
             }
         }
     }
