@@ -87,27 +87,49 @@
 // }
 
 $(document).ready(function () {
-    //$('.sermion-page').hide();
-    //$('[class*="goto"]').hide();
-    // $('.parallax').parallax({
-    //     imageSrc: 'img/doc-parallax/inside-bg.jpg',
-    //     speed: 0.8
-    // });
+
+    var changeSectionQ = false,
+    scrollReturner = true,
+    height = window.innerHeight;
+    var supportsOrientationChange = "onorientationchange" in window,
+    orientationEvent = supportsOrientationChange ? "orientationchange" : "resize",
+    screenApply,
+    screenHeight = screen.height,
+    screenWidth = screen.width,
+    windowHeight = window.innerHeight,
+    windowWidth = window.innerWidth;
+    if (_detectPhone()) {
+    orientationChanger();
+    window.addEventListener(orientationEvent, function () {
+        screenHeight = screen.height;
+        screenWidth = screen.width;
+        windowHeight = window.innerHeight;
+        windowWidth = window.innerWidth;
+        orientationChanger();
+    }, false);
+} else {
+    document.querySelector('.screen-1').style.display = 'block';
+    document.querySelector('.head-svg-2').style.opacity = '0';
+}
 
     var menuOpened = false;
     $('.menu_burger').on('click', function () {
-    if (!menuOpened) {
+    if (!menuOpened && (!$('.disclaimer:visible').length)) {
         TweenMax.to('.menu', 0.3, {transform: 'translateX(0%)'});
         menuOpened = true;
         $('.menu_burger').addClass('close_menu_burger');
         $('.menu_burger_line').addClass('close_menu_line');
     } else {
-        TweenMax.to('.menu', 0.3, {x: '100%'});
+        MenuHide();
+    }
+    });
+
+    function MenuHide() {
+        TweenMax.to('.menu', 0.3, {x: '110%'});
         menuOpened = false;
         $('.menu_burger').removeClass('close_menu_burger');
         $('.menu_burger_line').removeClass('close_menu_line');
     }
-    });
 
     // $('.menu').on('mouseleave', function () {
     //     if (menuOpened) {
@@ -352,6 +374,216 @@ $(document).ready(function () {
     });
 
 
+
+    var toSermionClickedMenu = false;
+
+
+    $('.to-sermion_from-menu').on('click', function () {
+            if (!toSermionClickedMenu) {
+                toSermionClickedMenu = true;
+                MenuHide();
+                if (!disclaimerShowed) {
+                    $("body").css("overflow", "hidden");
+                    $(".disclaimer_overlay").css("visibility", "visible");
+                    new TimelineMax().set('.disclaimer', {
+                        display: 'block'
+                    }).fromTo('.disclaimer', .7, {
+                        opacity: 0
+                    }, {
+                        opacity: 1
+                    });
+                    $('.head-svg').css('pointer-events', 'none');
+                    //console.log('pointer-events:none');
+                    //$('.disclaimer').show('slow');
+                } else {
+                    //$('.parallax-mirror').css('display', 'block');
+                }
+
+                //scrolledToBottom = false;
+                new TimelineMax().to('.head-svg-2', 0.7, {autoAlpha:0});
+                if ($('.screen-1:visible').length) {
+                    new TimelineMax().to('.head-svg-2', 0.7, {autoAlpha:0})
+                        .set('.head-svg-2', {position:'absolute', top:"93%", height: '25vh'})
+                        .set('.head-bg-2', {fill: 'none', stroke:'none'});
+                    TweenMax.to('.screen-1', 0.5,
+                        {
+                            ease: Power1.easeInOut,
+                            opacity: 0,
+                            display: 'none',
+                            onComplete: function () {
+                                //clickCatchedMenu = false;
+                                //scrollHead();
+                                MenuClick();
+                            }
+                        });
+                } else {
+                    TweenMax.to('.screen-page:visible', 0.5, {
+                        opacity: 0,
+                        display: 'none',
+                        ease: Power1.easeInOut,
+                        onComplete: function () {
+                            $(window).scrollTop(0);
+                        }
+                    });
+                }
+
+                TweenMax.fromTo('.sermion-page', 0.5, {
+                    opacity: 0,
+                    display: 'none',
+                    y: $(window).height(),
+                    ease: Power1.easeInOut
+                }, {
+                    opacity: 1,
+                    display: 'block',
+                    y: 0,
+                    ease: Power1.easeInOut,
+                    delay: 0.5,
+                    onComplete: function () {
+                        //$('.parallax-mirror').css('display','block');
+                        // $('.parallax').parallax({
+                        //     imageSrc: 'img/doc-parallax/inside-bg.jpg',
+                        //     speed: 0.8
+                        // });
+                        toSermionClickedMenu = false;
+                        var tween0 = new TimelineMax().staggerFrom('.parallax_text', 0.9,
+                            {
+                                ease: Power1.easeInOut,
+                                opacity: 0,
+                                y: 50
+                            }, 0.3);
+                        var tween5 = new TimelineMax().from('.animation_sermion-page_1', 0.6,
+                            {
+                                ease: Power1.easeInOut,
+                                opacity: 0
+                            }).from('.animation_sermion-page_2', 0.5,
+                            {
+                                ease: Power1.easeInOut,
+                                opacity: 0
+                            }).from('.animation_sermion-page_3', 0.5,
+                            {
+                                ease: Power1.easeInOut,
+                                opacity: 0
+                            }).from('.animation_sermion-page_4', 0.5,
+                            {
+                                ease: Power1.easeInOut,
+                                opacity: 0
+                            }).from('.animation_sermion-page_5', 0.5,
+                            {
+                                ease: Power1.easeInOut,
+                                opacity: 0
+                            }).from('.animation_sermion-page_6', 0.5,
+                            {
+                                ease: Power1.easeInOut,
+                                opacity: 0
+                            });
+                        var tween1 = new TimelineMax().fromTo('.s-3__graph-line, .s-3__graph-circle, .s-3__graph-percent', 1, {
+                            opacity: 0
+                        }, {
+                            opacity: 1
+                        }).add(TweenMax.from('.s-3__graph-circle, .s-3__graph-percent', 1, {
+                            bottom: 0
+                        }), '.s-3__graph-line, .s-3__graph-circle, .s-3__graph-percent').add(TweenMax.from('.s-3__graph-line', 1, {
+                            height: 0
+                        }), '.s-3__graph-line, .s-3__graph-circle, .s-3__graph-percent').add(function () {
+                            $('.s-3__animate-number').each(function () {
+                                var number = $(this).data('number');
+                                var decimal_places = 1;
+                                var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
+                                $(this).animateNumber({
+                                    number: number * decimal_factor,
+
+                                    numberStep: function (now, tween) {
+                                        var floored_number = Math.floor(now) / decimal_factor,
+                                            target = $(tween.elem);
+
+                                        if (decimal_places > 0) {
+                                            // force decimal places even if they are 0
+                                            floored_number = floored_number.toFixed(decimal_places);
+
+                                            // replace '.' separator with ','
+                                            floored_number = floored_number.toString();
+                                        }
+
+                                        target.text(floored_number);
+                                    }
+                                }, 1000)
+                            });
+                        }, '.s-3__graph-line, .s-3__graph-circle, .s-3__graph-percent');
+
+                        var tween2 = new TimelineMax().from('.s-4__graph-item_row--1', .6, {
+                            ease: Power1.easeInOut,
+                            opacity: 0,
+                            y: -50
+                        }).from('.s-4__graph-item_row--2', .6, {
+                            ease: Power1.easeInOut,
+                            opacity: 0,
+                            y: -50
+                        }).from('.s-4__graph-item_row--3', .6, {
+                            ease: Power1.easeInOut,
+                            opacity: 0,
+                            y: -50
+                        }).from('.s-4__graph-item_row--4', .6, {
+                            ease: Power1.easeInOut,
+                            opacity: 0,
+                            y: -50
+                        }).from('.s-4__graph-item_row--5', .6, {
+                            ease: Power1.easeInOut,
+                            opacity: 0,
+                            y: -50
+                        });
+
+                        var tween3 = new TimelineMax().staggerFrom('.td-circle_animation--1', .9, {
+                            ease: Power1.easeInOut,
+                            opacity: 0,
+                            width: 0,
+                            height: 0
+                        }, 0.3).staggerFrom('.td-circle_animation--2', .9, {
+                            ease: Power1.easeInOut,
+                            opacity: 0,
+                            width: 0,
+                            height: 0
+                        }, 0.3);
+                        var tween4 = new TimelineMax().staggerTo('.td-circle_animation--1 p', .9, {
+                            ease: Power1.easeInOut,
+                            opacity: 1
+                        }, 0.3).staggerTo('.td-circle_animation--2 p', .9, {
+                            ease: Power1.easeInOut,
+                            opacity: 1
+                        }, 0.3);
+
+                        new ScrollMagic.Scene({
+                            triggerElement: ".s-3",
+                            reverse: false
+                        }).setTween(tween1).addTo(controller);
+                        new ScrollMagic.Scene({
+                            triggerElement: ".s-4",
+                            reverse: false
+                        }).setTween(tween2).addTo(controller);
+                        new ScrollMagic.Scene({
+                            triggerElement: ".s-5",
+                            reverse: false
+                        }).setTween(tween3).addTo(controller);
+                        new ScrollMagic.Scene({
+                            triggerElement: ".s-5",
+                            reverse: false
+                        }).setTween(tween4).addTo(controller);
+                        new ScrollMagic.Scene({
+                            triggerElement: ".parallax",
+                            reverse: false
+                        }).setTween(tween0).addTo(controller);
+                        new ScrollMagic.Scene({
+                            triggerElement: ".animation_sermion-page_1",
+                            triggerHook: 'onEnter',
+                            offset: 200,
+                            reverse: false
+                        }).setTween(tween5).addTo(controller);
+
+                    }
+                });
+            }
+    });
+
+
     $('#screen-1_button').on('click', function () {
         if ($('.head-svg').hasClass('head-opened')) {
             return
@@ -363,7 +595,9 @@ $(document).ready(function () {
                 $('.screen-1_hidden').toggleClass('show');
                 TweenMax.from('.screen-1_hidden', 0.7, {opacity: 0});
                 $('svg').css('pointer-events', 'auto');
-                $('.head-svg-2--click').css('cursor','pointer')
+                $('.head-svg-2--click').css('cursor','pointer');
+                $('.menu_burger').addClass('menu_burger_visible');
+                $('.menu').css('display','block');
             }
         });
 
@@ -619,7 +853,8 @@ $(document).ready(function () {
         TweenMax.to('.puzzle_text_2', .5, {
             fill: '#615f5f',
             opacity: 1,
-            delay: 0.8
+            delay: 0.8,
+            onComplete: MenuClick()
         });
     }
 
@@ -1190,7 +1425,7 @@ $(document).ready(function () {
     function headPuzzleFistCheckMobile() {
         $('.head-svg-2--click').on('click', function () {
             if (!clickCatchedMobile) {
-                if (!$('.head-svg-2--checked').length) {
+                if ((!$('.head-svg-2--checked').length) && (!menuFirstClick)) {
                     clickCatchedMobile = true;
                     var goto = $(this).data('goto-page');
                     //$('.page_puzzle__active').removeClass('page_puzzle__active');
@@ -1421,7 +1656,419 @@ $(document).ready(function () {
         })
     }
 
+    var menuFirstClick = false;
+    var clickCatchedMenu = false;
+    function MenuClick() {
+        $('.menu--click').on('click', function () {
+            if (!clickCatchedMenu) {
 
+                if ($('.sermion-page:visible').length) {
+                    var goto = $(this).data('goto-page');
+                    MenuHide();
+                    menuFirstClick = true;
+                    //$('.page_puzzle__active').removeClass('page_puzzle__active');
+                    //pagePuzzlesSwitcher(goto);
+
+                    TweenMax.to('.sermion-page', 0.5,
+                        {
+                            ease: Power1.easeInOut,
+                            opacity: 0,
+                            display: 'none',
+                            onComplete: function () {
+                                $(window).scrollTop(0);
+                                new TimelineMax().set(goto,
+                                    {display: 'block'}).fromTo(goto, 1,
+                                    {ease: Power1.easeInOut, opacity: 0, y: $(window).height() + 'px'},
+                                    {
+                                        ease: Power1.easeInOut, opacity: 1, y: 0, onComplete: function () {
+                                        scrollHead();
+                                        scrolledToBottom = false;
+                                        MenuClick();
+                                        clickCatchedMenu = false;
+                                        TweenMax.to('.head-svg-2', 0.7, {autoAlpha:1});
+                                    }
+                                    }).from($('.animation_screen-page_1:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_2:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_3:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_4:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).staggerFrom($('.animation_screen-page_5:visible'), 0.9,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0,
+                                        y: -30
+                                    }, 0.3);
+                                var tweenScreenPage1 = new TimelineMax().from($('.animation_screen-page_6:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).staggerFrom($('.animation_screen-page_7:visible'), 0.9,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }, 0.3);
+                                var tweenScreenPage2 = new TimelineMax().from($('.animation_screen-page_8:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_9:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_10:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).staggerFrom($('.animation_screen-page_11:visible'), 0.9,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0,
+                                        y: -30
+                                    }, 0.3).from($('.animation_screen-page_12:visible'), 0.6,
+                                    {
+                                        opacity: 0,
+                                        onComplete: function () {
+                                            $('.screen-page:visible').find('[class*="animation"]').removeClass('[class*="animation"]');
+                                            clickCatched2 = false;
+                                            scrollHeadAnimFinished = true;
+                                            //clickCatchedMenu = false;
+                                            headPuzzleFistCheckMobile();
+
+                                        }
+                                    });
+                                new ScrollMagic.Scene({
+                                    triggerElement: $('.animation_screen-page_6:visible'),
+                                    reverse: false
+                                }).setTween(tweenScreenPage1).addTo(controller);
+                                new ScrollMagic.Scene({
+                                    triggerElement: $('.animation_screen-page_8:visible'),
+                                    reverse: false
+                                }).setTween(tweenScreenPage2).addTo(controller);
+                            }
+                        });
+                } else if ((!$('.head-svg-2--checked').length) && (!menuFirstClick)) {
+                    menuFirstClick = true;
+                    clickCatchedMenu = true;
+                    MenuHide();
+                    var goto = $(this).data('goto-page');
+                    //$('.page_puzzle__active').removeClass('page_puzzle__active');
+                    //pagePuzzlesSwitcher(goto);
+                    new TimelineMax().to('.head-svg-2', 0.7, {autoAlpha:0})
+                        .set('.head-svg-2', {position:'absolute', top:"93%", height: '25vh'})
+                        .set('.head-bg-2', {fill: 'none', stroke:'none'})
+                        .to('.head-svg-2', 0.7, {autoAlpha:1, delay: 2});
+                    TweenMax.to('.screen-1', 1,
+                        {
+                            ease: Power1.easeInOut,
+                            opacity: 0,
+                            display: 'none',
+                            onComplete: function () {
+                                clickCatchedMenu = false;
+                                //scrollHead();
+                                MenuClick();
+                                new TimelineMax().set(goto,
+                                    {display: 'block'}).fromTo(goto, 1,
+                                    {ease: Power1.easeInOut, opacity: 0, y: $(window).height() + 'px'},
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 1,
+                                        y: 0
+                                    }).from($('.animation_screen-page_1:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_2:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_3:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_4:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).staggerFrom($('.animation_screen-page_5:visible'), 0.9,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0,
+                                        y: -30
+                                    }, 0.3);
+                                var tweenScreenPage1 = new TimelineMax().from($('.animation_screen-page_6:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).staggerFrom($('.animation_screen-page_7:visible'), 0.9,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }, 0.3);
+                                var tweenScreenPage2 = new TimelineMax().from($('.animation_screen-page_8:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_9:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_10:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).staggerFrom($('.animation_screen-page_11:visible'), 0.9,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0,
+                                        y: -30
+                                    }, 0.3).from($('.animation_screen-page_12:visible'), 0.6,
+                                    {
+                                        opacity: 0,
+                                        onComplete: function () {
+                                            $('.screen-page:visible').find('[class*="animation"]').removeClass('[class*="animation"]');
+                                            scrollHeadAnimFinished = true;
+                                            //clickCatchedMenu = false;
+                                            headPuzzleFistCheckMobile();
+
+                                        }
+                                    });
+                                new ScrollMagic.Scene({
+                                    triggerElement: $('.animation_screen-page_6:visible'),
+                                    reverse: false
+                                }).setTween(tweenScreenPage1).addTo(controller);
+                                new ScrollMagic.Scene({
+                                    triggerElement: $('.animation_screen-page_8:visible'),
+                                    reverse: false
+                                }).setTween(tweenScreenPage2).addTo(controller);
+                            }
+                        });
+                    //$(this).removeClass('head-svg-2--unchecked').addClass('head-svg-2--checked');
+                    // new TimelineMax().set($(this).find('.puzzle_image_bad_2'),
+                    //     {
+                    //         opacity: 0, display: 'none', delay:1
+                    //     }).set($(this).find('.puzzle_image_good_2'),
+                    //     {
+                    //         opacity: 1, display: 'inline'
+                    //     }).set($(this).find('.puzzle_text_2'),
+                    //     {
+                    //         opacity: 0, display: 'none'
+                    //     }).set($(this).find('.puzzle_text_good_2'),
+                    //     {
+                    //         display: 'inline',
+                    //         opacity: 1,
+                    //         onComplete: function () {
+                    //             $('.head-svg-2--click').find('.puzzle_text_2').addClass('puzzle_text--big');
+                    //             $('.red-2_2').find('.puzzle_text_2').css('transform','translateX(-19vw)');
+                    //             $('.red-2_2').find('.puzzle_text_good_2').css('transform','translateX(-25vw)');
+                    //             $('.violet-1_2').find('.puzzle_text_2').css('transform','translateX(-25vw)');
+                    //             $('.violet-1_2').find('.puzzle_text_good_2').css('transform','translateX(-20vw)');
+                    //             $('.head-svg-2--click').find('.puzzle_text_good_2').addClass('puzzle_text--big');
+                    //             scrollHeadAnimFinished = true;
+                    //             clickCatchedMenu = false;
+                    //             headPuzzleFistCheckMobile();
+                    //         }
+                    //     });
+                } else {
+                    var goto = $(this).data('goto-page');
+                    MenuHide();
+                    //$('.page_puzzle__active').removeClass('page_puzzle__active');
+                    //pagePuzzlesSwitcher(goto);
+
+                    TweenMax.to('.screen-page:visible', 1,
+                        {
+                            ease: Power1.easeInOut,
+                            opacity: 0,
+                            display: 'none',
+                            onComplete: function () {
+                                $(window).scrollTop(0);
+                                new TimelineMax().set(goto,
+                                    {display: 'block'}).fromTo(goto, 1,
+                                    {ease: Power1.easeInOut, opacity: 0, y: $(window).height() + 'px'},
+                                    {
+                                        ease: Power1.easeInOut, opacity: 1, y: 0, onComplete: function () {
+                                        scrollHead();
+                                        scrolledToBottom = false;
+                                        MenuClick();
+                                        clickCatchedMenu = false;
+                                    }
+                                    }).from($('.animation_screen-page_1:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_2:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_3:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_4:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).staggerFrom($('.animation_screen-page_5:visible'), 0.9,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0,
+                                        y: -30
+                                    }, 0.3);
+                                var tweenScreenPage1 = new TimelineMax().from($('.animation_screen-page_6:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).staggerFrom($('.animation_screen-page_7:visible'), 0.9,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }, 0.3);
+                                var tweenScreenPage2 = new TimelineMax().from($('.animation_screen-page_8:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_9:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).from($('.animation_screen-page_10:visible'), 0.6,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0
+                                    }).staggerFrom($('.animation_screen-page_11:visible'), 0.9,
+                                    {
+                                        ease: Power1.easeInOut,
+                                        opacity: 0,
+                                        y: -30
+                                    }, 0.3).from($('.animation_screen-page_12:visible'), 0.6,
+                                    {
+                                        opacity: 0,
+                                        onComplete: function () {
+                                            $('.screen-page:visible').find('[class*="animation"]').removeClass('[class*="animation"]');
+                                            clickCatched2 = false;
+                                            scrollHeadAnimFinished = true;
+                                            //clickCatchedMenu = false;
+                                            headPuzzleFistCheckMobile();
+
+                                        }
+                                    });
+                                new ScrollMagic.Scene({
+                                    triggerElement: $('.animation_screen-page_6:visible'),
+                                    reverse: false
+                                }).setTween(tweenScreenPage1).addTo(controller);
+                                new ScrollMagic.Scene({
+                                    triggerElement: $('.animation_screen-page_8:visible'),
+                                    reverse: false
+                                }).setTween(tweenScreenPage2).addTo(controller);
+                            }
+                        });
+                    // $(this).removeClass('head-svg-2--unchecked').addClass('head-svg-2--checked');
+                    // new TimelineMax().to($('head-svg-2'), 0.3,
+                    //     {
+                    //         opacity: 0
+                    //     }).set($(this).find('.puzzle_image_bad_2'),
+                    //     {
+                    //         opacity: 0, display: 'none', delay:1
+                    //     }).set($(this).find('.puzzle_image_good_2'),
+                    //     {
+                    //         opacity: 1, display: 'inline'
+                    //     }).set($(this).find('.puzzle_text_2'),
+                    //     {
+                    //         opacity: 0, display: 'none'
+                    //     }).set($('head-svg-2'),
+                    //     {
+                    //         opacity: 1
+                    //     }).set($(this).find('.puzzle_text_good_2'),
+                    //     {
+                    //         display: 'inline',
+                    //         opacity: 1,
+                    //         onComplete: function () {
+                    //             scrollHeadAnimFinished = true;
+                    //             clickCatchedMenu = false;
+                    //             headPuzzleFistCheckMobile();
+                    //         }
+                    //     });
+                }
+            }
+        })
+    }
+    function orientationChanger() {
+        if (_detectApple()) {
+            if (Math.abs(window.orientation) === 90 || Math.abs(window.orientation) === 180) {
+                screenApply = false;
+            } else {
+                screenApply = true;
+            }
+            if (screenApply) {
+                document.querySelector('.screen-1').style.display = 'none';
+                document.querySelector('.head-svg-2').style.opacity = '0';
+                if (screenHeight >= 568) {
+                    document.querySelector('.rotate-block').style.display = 'block';
+                } else {
+                    document.querySelector('.default-block').style.display = 'block';
+                }
+            } else {
+                document.querySelector('.rotate-block').style.display = 'none';
+                document.querySelector('.screen-1').style.display = 'block';
+                document.querySelector('.head-svg-2').style.opacity = '1';
+            }
+        } else {
+            screenApply = screenWidth < screenHeight;
+            if (screenApply) {
+                if (screenHeight >= 568) {
+                    document.querySelector('.screen-1').style.display = 'none';
+                    document.querySelector('.head-svg-2').style.opacity = '0';
+                    document.querySelector('.rotate-block').style.display = 'block';
+                } else {
+                    document.querySelector('.default-block').style.display = 'block';
+                }
+            } else {
+                document.querySelector('.rotate-block').style.display = 'none';
+                document.querySelector('.screen-1').style.display = 'block';
+                document.querySelector('.head-svg-2').style.opacity = '1';
+            }
+        }
+    }
+    function _detectPhone(phone, desktop) {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        if (phone) {
+            phone();
+        }
+        return true
+    } else {
+        if (desktop) {
+            desktop();
+        }
+        return false
+    }
+}
+
+function _detectApple() {
+    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        $('html').addClass('ios-mobile');
+        return true
+    } else {
+        return false
+    }
+}
+
+function _detectSafari() {
+    if (/^((?!chrome|android).)*safari/i.test(navigator.userAgent)) {
+        return true
+    } else {
+        return false
+    }
+}
 });
 
 

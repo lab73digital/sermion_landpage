@@ -1261,10 +1261,11 @@ div
     z-index: 200
     box-shadow: -1px 0px 14px -1px rgba(0,0,0,0.15)
     padding-top: 20vh
-    transform: translateX(100%)
+    transform: translateX(110%)
+    display: none
     span
         position: absolute
-        top: 2.3vw
+        top: 2.7vw
         left: 0
         font-family: $os-light
         font-size: 3vw
@@ -1275,26 +1276,28 @@ div
     position: fixed
     top: 2vw
     right: 2vw
-    width: get-vw(86px)
-    height: get-vw(86px)
+    //width: get-vw(86px)
+    //height: get-vw(86px)
+    width: 36px
+    height: 36px
     border: solid 2px #e0edfd
     border-radius: 50%
     //display: flex
-    justify-content: space-around
+    justify-content: space-between
     flex-direction: column
     align-items: center
-    padding: 1vw 0
+    padding: 10px 0
     z-index: 300
     cursor: pointer
     background-color: #fbfbfd
     transition: all 0.5s ease-in-out
     display: none
 .menu_burger_line
-    height: get-vw(3px)
-    width: get-vw(37px)
+    height: 1px
+    width: 17px
     background-color: #36a3fe
-    border-radius: get-vw(55px)
-    transition: all 0.5s ease-in-out
+    //border-radius: get-vw(55px)
+    transition: all 0.3s ease-in-out
 .close_menu_burger
     justify-content: center
 .close_menu_line
@@ -1328,14 +1331,73 @@ div
     border: none
     display: inline-block
     user-select: none
-    //margin: 0
+    margin-top: 1vw
     box-shadow: 0 2px 12px -3px rgba(16,207,232,1)
     transition: all 0.4s ease-in-out
     cursor: pointer
     &:hover
         background-color: #63b9ff
         transform: translateY(-2px)
+.menu_by
+    position: absolute
+    bottom: 2vw
+    font-size: 1.6vw
+    width: 100%
+    left: 50%
+    transform: translateX(-50%)
+    a
+        color: $c-black
+        text-decoration: underline $c-grey
+        transition: all 0.3s ease-in-out
+        &:hover
+            text-decoration: underline $c-black
+.rotate-block
+    display: none
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-image: url(../img/sermion-puzzle-bg-1.png), url(../img/sermion-puzzle-bg-3.png), url(../img/sermion-bg-shape.jpg)
+    background-repeat: no-repeat
+    background-position: right top, left bottom, center bottom
+    background-size: contain, contain, 180vw 60vh
+    z-index: 2001
+    text-align: center
+    img
+        display: block
+        width: 50%
+        margin: 20px auto 0
 
+.rotate-block__svg-container
+    display: block
+    //margin-top: 30px
+    padding: 35px 0
+    text-align: center
+    position: relative
+    svg
+        margin-top: 5vh
+        width: 150px
+        height: 150px
+        fill: $c-blue
+
+.rotate-block__text-container
+    display: block
+    //margin-top: 12%
+    text-align: center
+    .text1
+        font-weight: 700
+        font-size: get-vw(140px)
+        font-family: $os-light
+        text-transform: uppercase
+        //margin-bottom: 3px
+        margin-top: 15vh
+        color: $c-blue
+    .text2
+        font-family: $os-bold
+        font-size: get-vw(95px)
+        padding: 5vh 20vw
+        color: $c-blue
 
 @import "media"
 
