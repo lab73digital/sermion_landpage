@@ -198,6 +198,7 @@ $(document).ready(function () {
                 headPuzzleGatherAll();
                 if (!disclaimerShowed) {
                     $("body").css("overflow", "hidden");
+                    $('.sermion-page').css("position", "fixed");
                     $(".disclaimer_overlay").css("visibility", "visible");
                     new TimelineMax().set('.disclaimer', {
                         display: 'block'
@@ -389,6 +390,7 @@ $(document).ready(function () {
                 toSermionClickedMenu = true;
                 MenuHide();
                 if (!disclaimerShowed) {
+                    $(".sermion-page").css("position", "fixed");
                     $("body").css("overflow", "hidden");
                     $(".disclaimer_overlay").css("visibility", "visible");
                     new TimelineMax().set('.disclaimer', {
@@ -637,7 +639,8 @@ $(document).ready(function () {
         $(".disclaimer_overlay").css("visibility", "hidden");
         $('.disclaimer').hide();
         $("body").css("overflow", "auto");
-        $('.sermion-page').removeClass('sermion-overlay');
+        //$(".sermion-page").css("position", "absolute");
+        $('.sermion-page').removeClass('sermion-overlay').css("position", "absolute");
     });
 
     function PuzzleExplode() {
@@ -1535,9 +1538,11 @@ $(document).ready(function () {
                             opacity: 1,
                             onComplete: function () {
                                 $('.head-svg-2--click').find('.puzzle_text_2').addClass('puzzle_text--big');
-                                $('.red-2_2').find('.puzzle_text_2').css('transform','translateX(-19vw)');
+                                //$('.red-2_2').find('.puzzle_text_2').css('transform','translateX(-19vw)');
+                                $('.red-2_2').find('.puzzle_text_2').attr('x','-450');
                                 $('.red-2_2').find('.puzzle_text_good_2').css('transform','translateX(-25vw)');
-                                $('.violet-1_2').find('.puzzle_text_2').css('transform','translateX(-25vw)');
+                                //$('.violet-1_2').find('.puzzle_text_2').css('-webkit-transform','translateX(-25vw)');
+                                $('.violet-1_2').find('.puzzle_text_2').attr('x','-600');
                                 $('.violet-1_2').find('.puzzle_text_good_2').css('transform','translateX(-20vw)');
                                 $('.head-svg-2--click').find('.puzzle_text_good_2').addClass('puzzle_text--big');
                                 scrollHeadAnimFinished = true;
