@@ -131,6 +131,12 @@ $(document).ready(function () {
         $('.menu_burger_line').removeClass('close_menu_line');
     }
 
+    $(window).on('scroll', function () {
+      if (menuOpened) {
+          MenuHide();
+      }
+    });
+
     // $('.menu').on('mouseleave', function () {
     //     if (menuOpened) {
     //         TweenMax.to('.menu', 0.3, {x: '100%'});
