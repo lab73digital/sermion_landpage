@@ -897,9 +897,10 @@ $(document).ready(function () {
 
     function scrollHead() {
         $('.head-svg').css('pointer-events', 'none');
+        scrollHeadAnimFinished = false;
         //console.log('pointer-events nooooooone');
         $(window).on('scroll', function () {
-            scrollHeadAnimFinished = false;
+            //scrollHeadAnimFinished = false;
             if (scrolledToBottom) {
                 //scrolledToBottom = false;
                 return
@@ -958,9 +959,9 @@ $(document).ready(function () {
                                     opacity: 1,
                                     display: 'block',
                                     onComplete: function () {
+                                        scrollHeadAnimFinished = true;
                                         $('.head-svg').css('pointer-events', 'auto');
                                         headPuzzleCheck();
-                                        scrollHeadAnimFinished = true;
                                     }
                                 });
                         }
