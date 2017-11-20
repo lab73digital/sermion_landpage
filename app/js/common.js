@@ -195,6 +195,7 @@ $(document).ready(function () {
         if (scrollHeadAnimFinished) {
             if (!toSermionClicked) {
                 toSermionClicked = true;
+                toSermionClickedMenu = true;
                 headPuzzleGatherAll();
                 if (!disclaimerShowed) {
                     $("body").css("overflow", "hidden");
@@ -211,12 +212,14 @@ $(document).ready(function () {
                     //console.log('pointer-events:none');
                     //$('.disclaimer').show('slow');
                 } else {
-                    $('.parallax-mirror').css('display', 'block');
+                    if (!$('.menu_burger:visible').length) {
+                        $('.parallax-mirror').css('display', 'block');
+                    }
                 }
 
                 $('.head-svg').css('width', 'auto');
                 scrolledToBottom = false;
-                new TimelineMax().to('.head-svg-2', 0.7, {autoAlpha:0});
+                new TimelineMax().to('.head-svg-2', 0.5, {autoAlpha:0});
                 new TimelineMax().to('.screen-page:visible', 0.5, {
                     opacity: 0,
                     display: 'none',
@@ -400,7 +403,7 @@ $(document).ready(function () {
                     }, {
                         opacity: 1
                     });
-                    $('.head-svg').css('pointer-events', 'none');
+                    //$('.head-svg').css('pointer-events', 'none');
                     //console.log('pointer-events:none');
                     //$('.disclaimer').show('slow');
                 } else {
@@ -408,9 +411,9 @@ $(document).ready(function () {
                 }
 
                 //scrolledToBottom = false;
-                new TimelineMax().to('.head-svg-2', 0.7, {autoAlpha:0});
+                //new TimelineMax().to('.head-svg-2', 0.7, {autoAlpha:0});
                 if ($('.screen-1:visible').length) {
-                    new TimelineMax().to('.head-svg-2', 0.7, {autoAlpha:0})
+                    new TimelineMax().to('.head-svg-2', 0.5, {autoAlpha:0})
                         .set('.head-svg-2', {position:'absolute', top:"93%", height: '25vh'})
                         .set('.head-bg-2', {fill: 'none', stroke:'none'});
                     TweenMax.to('.screen-1', 0.5,
@@ -425,6 +428,7 @@ $(document).ready(function () {
                             }
                         });
                 } else {
+                    TweenMax.to('.head-svg-2', 0.5, {autoAlpha:0});
                     TweenMax.to('.screen-page:visible', 0.5, {
                         opacity: 0,
                         display: 'none',
@@ -452,7 +456,7 @@ $(document).ready(function () {
                         //     imageSrc: 'img/doc-parallax/inside-bg.jpg',
                         //     speed: 0.8
                         // });
-                        toSermionClickedMenu = false;
+                        //toSermionClickedMenu = false;
                         var tween0 = new TimelineMax().staggerFrom('.parallax_text', 0.9,
                             {
                                 ease: Power1.easeInOut,
@@ -556,7 +560,10 @@ $(document).ready(function () {
                             opacity: 1
                         }, 0.3).staggerTo('.td-circle_animation--2 p', .9, {
                             ease: Power1.easeInOut,
-                            opacity: 1
+                            opacity: 1,
+                            onComplete: function () {
+                                toSermionClickedMenu = false;
+                            }
                         }, 0.3);
 
                         new ScrollMagic.Scene({
@@ -625,7 +632,9 @@ $(document).ready(function () {
     });
     $('.confirm').on('click', function () {
         disclaimerShowed = true;
-        $('.parallax-mirror').css('display', 'block');
+        if (!$('.menu_burger:visible').length) {
+            $('.parallax-mirror').css('display', 'block');
+        }
         $('.head-svg').css('pointer-events', 'auto');
         TweenMax.from('.parallax-mirror', .5, {
 
@@ -1677,6 +1686,7 @@ $(document).ready(function () {
                     var goto = $(this).data('goto-page');
                     MenuHide();
                     menuFirstClick = true;
+                    toSermionClickedMenu = false;
                     //$('.page_puzzle__active').removeClass('page_puzzle__active');
                     //pagePuzzlesSwitcher(goto);
 
