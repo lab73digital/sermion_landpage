@@ -1,91 +1,3 @@
-// var changeSectionQ = false,
-//     scrollReturner = true,
-//     height = window.innerHeight;
-// var supportsOrientationChange = "onorientationchange" in window,
-//     orientationEvent = supportsOrientationChange ? "orientationchange" : "resize",
-//     screenApply,
-//     screenHeight = screen.height,
-//     screenWidth = screen.width,
-//     windowHeight = window.innerHeight,
-//     windowWidth = window.innerWidth;
-// if (_detectPhone()) {
-//     orientationChanger();
-//     window.addEventListener(orientationEvent, function () {
-//         screenHeight = screen.height;
-//         screenWidth = screen.width;
-//         windowHeight = window.innerHeight;
-//         windowWidth = window.innerWidth;
-//         orientationChanger();
-//     }, false);
-// } else {
-//     document.querySelector('.landing-container').style.display = 'block';
-// }
-//
-// function orientationChanger() {
-//     if (_detectApple()) {
-//         if (Math.abs(window.orientation) === 90 || Math.abs(window.orientation) === 180) {
-//             screenApply = false;
-//         } else {
-//             screenApply = true;
-//         }
-//         if (screenApply) {
-//             document.querySelector('.landing-container').style.display = 'none';
-//             if (screenHeight >= 568) {
-//                 document.querySelector('.rotate-block').style.display = 'block';
-//             } else {
-//                 document.querySelector('.default-block').style.display = 'block';
-//             }
-//         } else {
-//             document.querySelector('.rotate-block').style.display = 'none';
-//             document.querySelector('.landing-container').style.display = 'block';
-//         }
-//     } else {
-//         screenApply = screenWidth < screenHeight;
-//         if (screenApply) {
-//             if (screenHeight >= 568) {
-//                 document.querySelector('.landing-container').style.display = 'none';
-//                 document.querySelector('.rotate-block').style.display = 'block';
-//             } else {
-//                 document.querySelector('.default-block').style.display = 'block';
-//             }
-//         } else {
-//             document.querySelector('.rotate-block').style.display = 'none';
-//             document.querySelector('.landing-container').style.display = 'block';
-//         }
-//     }
-// }
-//
-// function _detectPhone(phone, desktop) {
-//     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-//         if (phone) {
-//             phone();
-//         }
-//         return true
-//     } else {
-//         if (desktop) {
-//             desktop();
-//         }
-//         return false
-//     }
-// }
-//
-// function _detectApple() {
-//     if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-//         $('html').addClass('ios-mobile');
-//         return true
-//     } else {
-//         return false
-//     }
-// }
-//
-// function _detectSafari() {
-//     if (/^((?!chrome|android).)*safari/i.test(navigator.userAgent)) {
-//         return true
-//     } else {
-//         return false
-//     }
-// }
-
 $(document).ready(function () {
 
     var changeSectionQ = false,
@@ -137,12 +49,13 @@ $(document).ready(function () {
       }
     });
 
-    // $('.menu').on('mouseleave', function () {
-    //     if (menuOpened) {
-    //         TweenMax.to('.menu', 0.3, {x: '100%'});
-    //         menuOpened = false;
-    //     }
-    // });
+
+    $('.tooltip').tooltipster({
+        contentAsHTML: true,
+        interactive: true,
+        side: 'bottom',
+        maxWidth: 260
+    });
 
 
     var controller = new ScrollMagic.Controller();
@@ -395,7 +308,7 @@ $(document).ready(function () {
                 if (!disclaimerShowed) {
                     $(".sermion-page").css("position", "fixed");
                     $("body").css("overflow", "hidden");
-                    $(".disclaimer_overlay").css("visibility", "visible");
+                    //$(".disclaimer_overlay").css("visibility", "visible");
                     new TimelineMax().set('.disclaimer', {
                         display: 'block'
                     }).fromTo('.disclaimer', .7, {
@@ -643,7 +556,7 @@ $(document).ready(function () {
         });
         $('.parallax').parallax({
             imageSrc: 'img/doc-parallax/inside-bg.jpg',
-            speed: 0.4
+            speed: 0.5
         });
         $(".disclaimer_overlay").css("visibility", "hidden");
         $('.disclaimer').hide();
@@ -1027,19 +940,19 @@ $(document).ready(function () {
                                         ease: Power1.easeInOut,
                                         opacity: 1,
                                         y: 0
-                                    }).from($('.animation_screen-page_1:visible'), 0.6,
+                                    }).from($('.animation_screen-page_1:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_2:visible'), 0.6,
+                                    }).from($('.animation_screen-page_2:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_3:visible'), 0.6,
+                                    }).from($('.animation_screen-page_3:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_4:visible'), 0.6,
+                                    }).from($('.animation_screen-page_4:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
@@ -1049,7 +962,7 @@ $(document).ready(function () {
                                         opacity: 0,
                                         y: -30
                                     }, 0.3);
-                                var tweenScreenPage1 = new TimelineMax().from($('.animation_screen-page_6:visible'), 0.6,
+                                var tweenScreenPage1 = new TimelineMax().from($('.animation_screen-page_6:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
@@ -1058,15 +971,15 @@ $(document).ready(function () {
                                         ease: Power1.easeInOut,
                                         opacity: 0
                                     }, 0.3);
-                                var tweenScreenPage2 = new TimelineMax().from($('.animation_screen-page_8:visible'), 0.6,
+                                var tweenScreenPage2 = new TimelineMax().from($('.animation_screen-page_8:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_9:visible'), 0.6,
+                                    }).from($('.animation_screen-page_9:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_10:visible'), 0.6,
+                                    }).from($('.animation_screen-page_10:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
@@ -1075,7 +988,7 @@ $(document).ready(function () {
                                         ease: Power1.easeInOut,
                                         opacity: 0,
                                         y: -30
-                                    }, 0.3).from($('.animation_screen-page_12:visible'), 0.6,
+                                    }, 0.3).from($('.animation_screen-page_12:visible'), 0.5,
                                     {
                                         opacity: 0,
                                         onComplete: function () {
@@ -1187,19 +1100,19 @@ $(document).ready(function () {
                                         scrollHead();
                                         scrolledToBottom = false;
                                     }
-                                    }).from($('.animation_screen-page_1:visible'), 0.6,
+                                    }).from($('.animation_screen-page_1:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_2:visible'), 0.6,
+                                    }).from($('.animation_screen-page_2:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_3:visible'), 0.6,
+                                    }).from($('.animation_screen-page_3:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_4:visible'), 0.6,
+                                    }).from($('.animation_screen-page_4:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
@@ -1209,7 +1122,7 @@ $(document).ready(function () {
                                         opacity: 0,
                                         y: -30
                                     }, 0.3);
-                                var tweenScreenPage1 = new TimelineMax().from($('.animation_screen-page_6:visible'), 0.6,
+                                var tweenScreenPage1 = new TimelineMax().from($('.animation_screen-page_6:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
@@ -1218,15 +1131,15 @@ $(document).ready(function () {
                                         ease: Power1.easeInOut,
                                         opacity: 0
                                     }, 0.3);
-                                var tweenScreenPage2 = new TimelineMax().from($('.animation_screen-page_8:visible'), 0.6,
+                                var tweenScreenPage2 = new TimelineMax().from($('.animation_screen-page_8:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_9:visible'), 0.6,
+                                    }).from($('.animation_screen-page_9:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_10:visible'), 0.6,
+                                    }).from($('.animation_screen-page_10:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
@@ -1235,7 +1148,7 @@ $(document).ready(function () {
                                         ease: Power1.easeInOut,
                                         opacity: 0,
                                         y: -30
-                                    }, 0.3).from($('.animation_screen-page_12:visible'), 0.6,
+                                    }, 0.3).from($('.animation_screen-page_12:visible'), 0.5,
                                     {
                                         opacity: 0,
                                         onComplete: function () {
@@ -1467,19 +1380,19 @@ $(document).ready(function () {
                                         ease: Power1.easeInOut,
                                         opacity: 1,
                                         y: 0
-                                    }).from($('.animation_screen-page_1:visible'), 0.6,
+                                    }).from($('.animation_screen-page_1:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_2:visible'), 0.6,
+                                    }).from($('.animation_screen-page_2:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_3:visible'), 0.6,
+                                    }).from($('.animation_screen-page_3:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_4:visible'), 0.6,
+                                    }).from($('.animation_screen-page_4:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
@@ -1489,7 +1402,7 @@ $(document).ready(function () {
                                         opacity: 0,
                                         y: -30
                                     }, 0.3);
-                                var tweenScreenPage1 = new TimelineMax().from($('.animation_screen-page_6:visible'), 0.6,
+                                var tweenScreenPage1 = new TimelineMax().from($('.animation_screen-page_6:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
@@ -1498,15 +1411,15 @@ $(document).ready(function () {
                                         ease: Power1.easeInOut,
                                         opacity: 0
                                     }, 0.3);
-                                var tweenScreenPage2 = new TimelineMax().from($('.animation_screen-page_8:visible'), 0.6,
+                                var tweenScreenPage2 = new TimelineMax().from($('.animation_screen-page_8:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_9:visible'), 0.6,
+                                    }).from($('.animation_screen-page_9:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_10:visible'), 0.6,
+                                    }).from($('.animation_screen-page_10:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
@@ -1515,7 +1428,7 @@ $(document).ready(function () {
                                         ease: Power1.easeInOut,
                                         opacity: 0,
                                         y: -30
-                                    }, 0.3).from($('.animation_screen-page_12:visible'), 0.6,
+                                    }, 0.3).from($('.animation_screen-page_12:visible'), 0.5,
                                     {
                                         opacity: 0,
                                         onComplete: function () {
@@ -1580,19 +1493,19 @@ $(document).ready(function () {
                                         scrollHead();
                                         scrolledToBottom = false;
                                     }
-                                    }).from($('.animation_screen-page_1:visible'), 0.6,
+                                    }).from($('.animation_screen-page_1:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_2:visible'), 0.6,
+                                    }).from($('.animation_screen-page_2:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_3:visible'), 0.6,
+                                    }).from($('.animation_screen-page_3:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_4:visible'), 0.6,
+                                    }).from($('.animation_screen-page_4:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
@@ -1602,7 +1515,7 @@ $(document).ready(function () {
                                         opacity: 0,
                                         y: -30
                                     }, 0.3);
-                                var tweenScreenPage1 = new TimelineMax().from($('.animation_screen-page_6:visible'), 0.6,
+                                var tweenScreenPage1 = new TimelineMax().from($('.animation_screen-page_6:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
@@ -1611,15 +1524,15 @@ $(document).ready(function () {
                                         ease: Power1.easeInOut,
                                         opacity: 0
                                     }, 0.3);
-                                var tweenScreenPage2 = new TimelineMax().from($('.animation_screen-page_8:visible'), 0.6,
+                                var tweenScreenPage2 = new TimelineMax().from($('.animation_screen-page_8:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_9:visible'), 0.6,
+                                    }).from($('.animation_screen-page_9:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_10:visible'), 0.6,
+                                    }).from($('.animation_screen-page_10:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
@@ -1628,7 +1541,7 @@ $(document).ready(function () {
                                         ease: Power1.easeInOut,
                                         opacity: 0,
                                         y: -30
-                                    }, 0.3).from($('.animation_screen-page_12:visible'), 0.6,
+                                    }, 0.3).from($('.animation_screen-page_12:visible'), 0.5,
                                     {
                                         opacity: 0,
                                         onComplete: function () {
@@ -1709,19 +1622,19 @@ $(document).ready(function () {
                                         clickCatchedMenu = false;
                                         TweenMax.to('.head-svg-2', 0.7, {autoAlpha:1});
                                     }
-                                    }).from($('.animation_screen-page_1:visible'), 0.6,
+                                    }).from($('.animation_screen-page_1:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_2:visible'), 0.6,
+                                    }).from($('.animation_screen-page_2:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_3:visible'), 0.6,
+                                    }).from($('.animation_screen-page_3:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_4:visible'), 0.6,
+                                    }).from($('.animation_screen-page_4:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
@@ -1731,7 +1644,7 @@ $(document).ready(function () {
                                         opacity: 0,
                                         y: -30
                                     }, 0.3);
-                                var tweenScreenPage1 = new TimelineMax().from($('.animation_screen-page_6:visible'), 0.6,
+                                var tweenScreenPage1 = new TimelineMax().from($('.animation_screen-page_6:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
@@ -1740,15 +1653,15 @@ $(document).ready(function () {
                                         ease: Power1.easeInOut,
                                         opacity: 0
                                     }, 0.3);
-                                var tweenScreenPage2 = new TimelineMax().from($('.animation_screen-page_8:visible'), 0.6,
+                                var tweenScreenPage2 = new TimelineMax().from($('.animation_screen-page_8:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_9:visible'), 0.6,
+                                    }).from($('.animation_screen-page_9:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_10:visible'), 0.6,
+                                    }).from($('.animation_screen-page_10:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
@@ -1757,7 +1670,7 @@ $(document).ready(function () {
                                         ease: Power1.easeInOut,
                                         opacity: 0,
                                         y: -30
-                                    }, 0.3).from($('.animation_screen-page_12:visible'), 0.6,
+                                    }, 0.3).from($('.animation_screen-page_12:visible'), 0.5,
                                     {
                                         opacity: 0,
                                         onComplete: function () {
@@ -1806,19 +1719,19 @@ $(document).ready(function () {
                                         ease: Power1.easeInOut,
                                         opacity: 1,
                                         y: 0
-                                    }).from($('.animation_screen-page_1:visible'), 0.6,
+                                    }).from($('.animation_screen-page_1:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_2:visible'), 0.6,
+                                    }).from($('.animation_screen-page_2:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_3:visible'), 0.6,
+                                    }).from($('.animation_screen-page_3:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_4:visible'), 0.6,
+                                    }).from($('.animation_screen-page_4:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
@@ -1828,7 +1741,7 @@ $(document).ready(function () {
                                         opacity: 0,
                                         y: -30
                                     }, 0.3);
-                                var tweenScreenPage1 = new TimelineMax().from($('.animation_screen-page_6:visible'), 0.6,
+                                var tweenScreenPage1 = new TimelineMax().from($('.animation_screen-page_6:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
@@ -1837,15 +1750,15 @@ $(document).ready(function () {
                                         ease: Power1.easeInOut,
                                         opacity: 0
                                     }, 0.3);
-                                var tweenScreenPage2 = new TimelineMax().from($('.animation_screen-page_8:visible'), 0.6,
+                                var tweenScreenPage2 = new TimelineMax().from($('.animation_screen-page_8:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_9:visible'), 0.6,
+                                    }).from($('.animation_screen-page_9:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_10:visible'), 0.6,
+                                    }).from($('.animation_screen-page_10:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
@@ -1854,7 +1767,7 @@ $(document).ready(function () {
                                         ease: Power1.easeInOut,
                                         opacity: 0,
                                         y: -30
-                                    }, 0.3).from($('.animation_screen-page_12:visible'), 0.6,
+                                    }, 0.3).from($('.animation_screen-page_12:visible'), 0.5,
                                     {
                                         opacity: 0,
                                         onComplete: function () {
@@ -1924,19 +1837,19 @@ $(document).ready(function () {
                                         MenuClick();
                                         clickCatchedMenu = false;
                                     }
-                                    }).from($('.animation_screen-page_1:visible'), 0.6,
+                                    }).from($('.animation_screen-page_1:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_2:visible'), 0.6,
+                                    }).from($('.animation_screen-page_2:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_3:visible'), 0.6,
+                                    }).from($('.animation_screen-page_3:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_4:visible'), 0.6,
+                                    }).from($('.animation_screen-page_4:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
@@ -1946,7 +1859,7 @@ $(document).ready(function () {
                                         opacity: 0,
                                         y: -30
                                     }, 0.3);
-                                var tweenScreenPage1 = new TimelineMax().from($('.animation_screen-page_6:visible'), 0.6,
+                                var tweenScreenPage1 = new TimelineMax().from($('.animation_screen-page_6:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
@@ -1955,15 +1868,15 @@ $(document).ready(function () {
                                         ease: Power1.easeInOut,
                                         opacity: 0
                                     }, 0.3);
-                                var tweenScreenPage2 = new TimelineMax().from($('.animation_screen-page_8:visible'), 0.6,
+                                var tweenScreenPage2 = new TimelineMax().from($('.animation_screen-page_8:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_9:visible'), 0.6,
+                                    }).from($('.animation_screen-page_9:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
-                                    }).from($('.animation_screen-page_10:visible'), 0.6,
+                                    }).from($('.animation_screen-page_10:visible'), 0.5,
                                     {
                                         ease: Power1.easeInOut,
                                         opacity: 0
@@ -1972,7 +1885,7 @@ $(document).ready(function () {
                                         ease: Power1.easeInOut,
                                         opacity: 0,
                                         y: -30
-                                    }, 0.3).from($('.animation_screen-page_12:visible'), 0.6,
+                                    }, 0.3).from($('.animation_screen-page_12:visible'), 0.5,
                                     {
                                         opacity: 0,
                                         onComplete: function () {

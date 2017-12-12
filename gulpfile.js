@@ -20,6 +20,7 @@ gulp.task('scripts', function() {
 		'app/libs/jquery/dist/jquery.min.js',
         'app/libs/gsap/src/minified/TweenMax.min.js',
         'app/libs/gsap/src/minified/plugins/DrawSVGPlugin.min.js',
+        'app/libs/tooltipster/dist/js/tooltipster.bundle.js',
         'app/libs/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js',
         'app/libs/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js',
         'app/libs/jquery-animateNumber/jquery.animateNumber.min.js',
