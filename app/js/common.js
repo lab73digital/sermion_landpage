@@ -546,7 +546,9 @@ $(document).ready(function () {
     $('.confirm').on('click', function () {
         disclaimerShowed = true;
         if (!$('.menu_burger:visible').length) {
-            $('.parallax-mirror').css('display', 'block');
+            if ($('.sermion-page:visible').length) {
+                $('.parallax-mirror').css('display', 'block');
+            }
         }
         $('.head-svg').css('pointer-events', 'auto');
         TweenMax.from('.parallax-mirror', .5, {
